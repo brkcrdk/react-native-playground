@@ -1,11 +1,15 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View} from 'react-native';
+import {Container, Text, CustomRipple} from '../../components';
 
 const RipTest = () => {
   return (
-    <View>
-      <Text>RipTest is here</Text>
-    </View>
+    <Container>
+      <Text color="#fff" fontSize={20} marginBottom={20}>
+        RipTest is here
+      </Text>
+      <CustomRipple />
+    </Container>
   );
 };
 
