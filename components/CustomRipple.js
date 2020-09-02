@@ -8,8 +8,8 @@ import {TapGestureHandler, State} from 'react-native-gesture-handler';
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [opacity, setOpacity] = useState(1);
-  const state = new Value(-1);
-  const translateX = new Value(0);
+  // const state = new Value(-1);
+  // const translateX = new Value(0);
 
   const handlePress = (e) => {
     if (e && e.nativeEvent) {
