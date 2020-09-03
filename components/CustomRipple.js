@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, createContext} from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import Text from './Text';
 import Animated, {
@@ -13,15 +13,14 @@ import Animated, {
 } from 'react-native-reanimated';
 import {
   TapGestureHandler,
-  PanGestureHandler,
   LongPressGestureHandler,
 } from 'react-native-gesture-handler';
 
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
-  const scale = useSharedValue(0);
-  const opacity = useSharedValue(0);
+  const scale = useSharedValue(1);
+  const opacity = useSharedValue(1);
 
   const handleLayout = (e) => {
     if (e && e.nativeEvent) {
@@ -50,6 +49,28 @@ const CustomRipple = () => {
     };
   });
 
+  const gestureHandler = useAnimatedGestureHandler({
+    onStart: (event, ctx) => {
+      ctx.startingScale = scale.value;
+    },
+    onActive: (event, ctx) => {
+      console.log('active', {starting: ctx.startingScale});
+      scale.value = ctx.startingScale;
+    },
+    onEnd: (event) => {
+      // console.log('end', {event});
+    },
+    onFinish: (event) => {
+      console.log('finish', {event});
+    },
+    onCancel: (event) => {
+      // console.log('cancel', {event});
+    },
+    onFail: (event) => {
+      // console.log('fail', {event});
+    },
+  });
+
   const s = StyleSheet.create({
     container: {
       borderWidth: 1,
@@ -62,12 +83,12 @@ const CustomRipple = () => {
     effect: {
       height: 20,
       width: 20,
-      backgroundColor: '#ccc',
+      backgroundColor: 'red',
       left: pressPosition.x - 10 || 0,
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
       borderRadius: size.width,
-      opacity: 1,
+      opacity: opacity.value,
       transform: [
         {
           scale: scale.value,
@@ -76,7 +97,9 @@ const CustomRipple = () => {
     },
   });
   return (
-    <TapGestureHandler onHandlerStateChange={handlePress}>
+    <LongPressGestureHandler
+      onGestureEvent={gestureHandler}
+      minDurationMs={100}>
       <Animated.View style={s.container} onLayout={handleLayout}>
         <Animated.View style={[s.effect, animatedStyle]} />
         <View>
@@ -89,7 +112,7 @@ const CustomRipple = () => {
           </Text>
         </View>
       </Animated.View>
-    </TapGestureHandler>
+    </LongPressGestureHandler>
   );
 };
 
