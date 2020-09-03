@@ -35,8 +35,8 @@ const CustomRipple = () => {
       const {x, y} = e.nativeEvent;
       setPressPosition({x, y});
     }
-    scale.value = sequence(withTiming(4), delay(400, withTiming(0)));
-    opacity.value = sequence(withTiming(0.5), delay(400, withTiming(0)));
+    scale.value = sequence(withTiming(50), delay(300, withTiming(0)));
+    opacity.value = sequence(withTiming(0.2), delay(150, withTiming(0)));
   };
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -57,11 +57,12 @@ const CustomRipple = () => {
       padding: 10,
       width: 350,
       height: 350,
+      overflow: 'hidden',
     },
     effect: {
       height: 20,
       width: 20,
-      backgroundColor: 'red',
+      backgroundColor: '#ccc',
       left: pressPosition.x - 10 || 0,
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
