@@ -7,28 +7,38 @@ import {runTiming} from '../utils';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
+  const [size, setSize] = useState({});
   const [opacity, setOpacity] = useState(1);
+  const [scale, setScale] = useState(0);
   // const state = new Value(-1);
   // const translateX = new Value(0);
+
+  const handleLayout = (e) => {
+    if (e && e.nativeEvent) {
+      const {height, width} = e.nativeEvent.layout;
+      setSize({width, height});
+    }
+  };
 
   const handlePress = (e) => {
     if (e && e.nativeEvent) {
       const {x, y} = e.nativeEvent;
       setPressPosition({x, y});
     }
+    console.log(State);
+    const maxScale = size.height * Math.sqrt(2);
+    const scaleUp = runTiming(clock, 1, 2, 500);
+    setScale(scaleUp);
   };
-
   const clock = new Clock();
-
-  const scaleUp = runTiming(clock, 0.3, 2.3, 500);
 
   const s = StyleSheet.create({
     container: {
       borderWidth: 1,
       borderColor: '#fff',
       padding: 10,
-      width: 200,
-      height: 200,
+      width: 350,
+      height: 350,
     },
     effect: {
       height: 20,
@@ -37,10 +47,11 @@ const CustomRipple = () => {
       left: pressPosition.x - 10 || 0,
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
+      borderRadius: size.width,
       opacity,
       transform: [
         {
-          scale: scaleUp,
+          scale,
         },
       ],
     },
@@ -48,12 +59,15 @@ const CustomRipple = () => {
 
   return (
     <TapGestureHandler onHandlerStateChange={handlePress}>
-      <View style={s.container}>
+      <View style={s.container} onLayout={handleLayout}>
         <Animated.View style={s.effect} />
         <View>
           <Text>CustomRipple component is here</Text>
           <Text>
-            x is {pressPosition.x}, y is {pressPosition.y}
+            Press position: x is {pressPosition.x}, y is {pressPosition.y}
+          </Text>
+          <Text>
+            Sizes: x is {size.height}, y is {size.width}
           </Text>
         </View>
       </View>
