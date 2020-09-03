@@ -7,16 +7,21 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withTiming,
+  useDerivedValue,
+  delay,
+  sequence,
 } from 'react-native-reanimated';
 import {
   TapGestureHandler,
   PanGestureHandler,
+  LongPressGestureHandler,
 } from 'react-native-gesture-handler';
 
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
   const scale = useSharedValue(0);
+  const opacity = useSharedValue(0);
 
   const handleLayout = (e) => {
     if (e && e.nativeEvent) {
@@ -30,21 +35,20 @@ const CustomRipple = () => {
       const {x, y} = e.nativeEvent;
       setPressPosition({x, y});
     }
-    scale.value = withTiming(3);
+    scale.value = sequence(withTiming(4), delay(400, withTiming(0)));
+    opacity.value = sequence(withTiming(0.5), delay(400, withTiming(0)));
   };
 
-  // const gestureHandler = useAnimatedGestureHandler({
-  //   onStart: (_, ctx) => {
-  //     ctx.startX = scale.value;
-  //     console.log(ctx.scale);
-  //   },
-  //   onActive: (event, ctx) => {
-  //     scale.value = ctx.startX + event.translationX;
-  //   },
-  //   onEnd: () => {
-  //     scale.value = withSpring(0);
-  //   },
-  // });
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [
+        {
+          scale: scale.value,
+        },
+      ],
+    };
+  });
 
   const s = StyleSheet.create({
     container: {
@@ -70,17 +74,6 @@ const CustomRipple = () => {
       ],
     },
   });
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [
-        {
-          scale: scale.value,
-        },
-      ],
-    };
-  });
-
   return (
     <TapGestureHandler onHandlerStateChange={handlePress}>
       <Animated.View style={s.container} onLayout={handleLayout}>
