@@ -8,7 +8,6 @@ import {TapGestureHandler, State} from 'react-native-gesture-handler';
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
-  const [opacity, setOpacity] = useState(1);
   const [scale, setScale] = useState(0);
   // const state = new Value(-1);
   // const translateX = new Value(0);
@@ -26,7 +25,6 @@ const CustomRipple = () => {
       setPressPosition({x, y});
     }
     console.log(State);
-    const maxScale = size.height * Math.sqrt(2);
     const scaleUp = runTiming(clock, 1, 2, 500);
     setScale(scaleUp);
   };
@@ -48,7 +46,7 @@ const CustomRipple = () => {
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
       borderRadius: size.width,
-      opacity,
+      opacity: 1,
       transform: [
         {
           scale,
