@@ -24,7 +24,6 @@ const CustomRipple = () => {
       const {x, y} = e.nativeEvent;
       setPressPosition({x, y});
     }
-    console.log(State);
     const scaleUp = runTiming(clock, 1, 2, 500);
     setScale(scaleUp);
   };
