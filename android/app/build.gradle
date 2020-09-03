@@ -77,9 +77,14 @@ import com.android.build.OutputFile
  * ]
  */
 
+//HERMES ACTIVATED FOR REANIMATED2
+
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+   entryFile: "index.js",
+   enableHermes: true  // clean and rebuild if changing
 ]
+
+//HERMES ACTIVATED FOR REANIMATED2
 
 apply from: "../../node_modules/react-native/react.gradle"
 
