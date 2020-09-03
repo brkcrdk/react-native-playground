@@ -1,14 +1,13 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Text from './Text';
-import Animated, {Value, Clock} from 'react-native-reanimated';
-import {runTiming} from '../utils';
-
+import Animated from 'react-native-reanimated';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
+
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
-  const [scale, setScale] = useState(0);
+  const [scale, setScale] = useState(1);
   // const state = new Value(-1);
   // const translateX = new Value(0);
 
@@ -24,10 +23,7 @@ const CustomRipple = () => {
       const {x, y} = e.nativeEvent;
       setPressPosition({x, y});
     }
-    const scaleUp = runTiming(clock, 1, 2, 500);
-    setScale(scaleUp);
   };
-  const clock = new Clock();
 
   const s = StyleSheet.create({
     container: {
