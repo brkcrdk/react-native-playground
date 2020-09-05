@@ -36,9 +36,11 @@ const CustomRipple = () => {
       const {x, y} = event;
       setPressPosition({x, y});
       ctx.maxScale = maxScale.value;
+      scale.value = 0;
+      opacity.value = 0;
     },
     onActive: (_, ctx) => {
-      scale.value = withTiming(ctx.maxScale, {duration: 500});
+      scale.value = withTiming(ctx.maxScale, {duration: 350});
       opacity.value = withTiming(0.3, {duration: 50});
     },
     onEnd: () => {
@@ -66,7 +68,7 @@ const CustomRipple = () => {
       borderColor: '#fff',
       padding: 10,
       width: 300,
-      height: 550,
+      height: 300,
       overflow: 'hidden',
     },
     effect: {
