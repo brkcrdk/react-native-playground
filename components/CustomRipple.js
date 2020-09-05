@@ -29,31 +29,23 @@ const CustomRipple = () => {
     }
   };
 
-  const handlePress = (e) => {
-    if (e && e.nativeEvent) {
-      const {x, y} = e.nativeEvent;
-      setPressPosition({x, y});
-    }
-    scale.value = sequence(withTiming(50), delay(300, withTiming(0)));
-    opacity.value = sequence(withTiming(0.2), delay(150, withTiming(0)));
-  };
-
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (event, ctx) => {
       const {x, y} = event;
       setPressPosition({x, y});
     },
     onActive: (event, ctx) => {
-      // console.log('active', {starting: ctx.startingScale});
-      scale.value = withTiming(50);
-      opacity.value = withTiming(0.3);
+      console.log('active');
+      scale.value = withTiming(50, {duration: 500});
+      opacity.value = withTiming(0.3, {duration: 50});
     },
     onEnd: (event) => {
       // scale.value = withTiming(1);
       // console.log('end', event);
       opacity.value = withTiming(0);
+      // scale.value = 0;
       setTimeout(() => {
-        scale.value = withTiming(0);
+        scale.value = 0;
       }, 300);
     },
     onFinish: (event) => {
