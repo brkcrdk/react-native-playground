@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import Text from './Text';
 import Animated, {
@@ -12,6 +12,8 @@ import {LongPressGestureHandler} from 'react-native-gesture-handler';
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
+
+  const maxScale = useSharedValue(0);
   const scale = useSharedValue(0);
   const opacity = useSharedValue(0);
 
@@ -21,14 +23,21 @@ const CustomRipple = () => {
       setSize({width, height});
     }
   };
+  useEffect(() => {
+    if (size) {
+      const value = 0;
+      maxScale.value = value;
+    }
+  }, [maxScale, size]);
 
   const gestureHandler = useAnimatedGestureHandler({
-    onStart: (event) => {
+    onStart: (event, ctx) => {
       const {x, y} = event;
       setPressPosition({x, y});
+      ctx.maxScale = maxScale.value;
     },
-    onActive: () => {
-      console.log('active');
+    onActive: (_, ctx) => {
+      console.log(ctx.maxScale);
       scale.value = withTiming(50, {duration: 500});
       opacity.value = withTiming(0.3, {duration: 50});
     },
