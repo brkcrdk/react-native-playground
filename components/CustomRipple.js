@@ -1,20 +1,13 @@
-import React, {useState, createContext} from 'react';
-import {View, StyleSheet, Button, Easing} from 'react-native';
+import React, {useState} from 'react';
+import {View, StyleSheet} from 'react-native';
 import Text from './Text';
 import Animated, {
   useSharedValue,
   useAnimatedGestureHandler,
   useAnimatedStyle,
-  withSpring,
   withTiming,
-  useDerivedValue,
-  delay,
-  sequence,
 } from 'react-native-reanimated';
-import {
-  TapGestureHandler,
-  LongPressGestureHandler,
-} from 'react-native-gesture-handler';
+import {LongPressGestureHandler} from 'react-native-gesture-handler';
 
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
@@ -30,34 +23,20 @@ const CustomRipple = () => {
   };
 
   const gestureHandler = useAnimatedGestureHandler({
-    onStart: (event, ctx) => {
+    onStart: (event) => {
       const {x, y} = event;
       setPressPosition({x, y});
     },
-    onActive: (event, ctx) => {
+    onActive: () => {
       console.log('active');
       scale.value = withTiming(50, {duration: 500});
       opacity.value = withTiming(0.3, {duration: 50});
     },
-    onEnd: (event) => {
-      // scale.value = withTiming(1);
-      // console.log('end', event);
+    onEnd: () => {
       opacity.value = withTiming(0);
-      // scale.value = 0;
       setTimeout(() => {
         scale.value = 0;
       }, 300);
-    },
-    onFinish: (event) => {
-      // scale.value = delay(1000, 0);
-      // scale.value = withTiming(0);
-      // console.log('finish', event);
-    },
-    onCancel: (event) => {
-      console.log('cancel', event);
-    },
-    onFail: (event) => {
-      // console.log('fail', {event});
     },
   });
 
