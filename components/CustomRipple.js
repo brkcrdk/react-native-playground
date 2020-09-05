@@ -1,5 +1,5 @@
 import React, {useState, createContext} from 'react';
-import {View, StyleSheet, Button} from 'react-native';
+import {View, StyleSheet, Button, Easing} from 'react-native';
 import Text from './Text';
 import Animated, {
   useSharedValue,
@@ -19,8 +19,8 @@ import {
 const CustomRipple = () => {
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
-  const scale = useSharedValue(1);
-  const opacity = useSharedValue(1);
+  const scale = useSharedValue(0);
+  const opacity = useSharedValue(0);
 
   const handleLayout = (e) => {
     if (e && e.nativeEvent) {
@@ -38,6 +38,37 @@ const CustomRipple = () => {
     opacity.value = sequence(withTiming(0.2), delay(150, withTiming(0)));
   };
 
+  const gestureHandler = useAnimatedGestureHandler({
+    onStart: (event, ctx) => {
+      const {x, y} = event;
+      setPressPosition({x, y});
+    },
+    onActive: (event, ctx) => {
+      // console.log('active', {starting: ctx.startingScale});
+      scale.value = withTiming(50);
+      opacity.value = withTiming(0.3);
+    },
+    onEnd: (event) => {
+      // scale.value = withTiming(1);
+      // console.log('end', event);
+      opacity.value = withTiming(0);
+      setTimeout(() => {
+        scale.value = withTiming(0);
+      }, 300);
+    },
+    onFinish: (event) => {
+      // scale.value = delay(1000, 0);
+      // scale.value = withTiming(0);
+      // console.log('finish', event);
+    },
+    onCancel: (event) => {
+      console.log('cancel', event);
+    },
+    onFail: (event) => {
+      // console.log('fail', {event});
+    },
+  });
+
   const animatedStyle = useAnimatedStyle(() => {
     return {
       opacity: opacity.value,
@@ -47,28 +78,6 @@ const CustomRipple = () => {
         },
       ],
     };
-  });
-
-  const gestureHandler = useAnimatedGestureHandler({
-    onStart: (event, ctx) => {
-      ctx.startingScale = scale.value;
-    },
-    onActive: (event, ctx) => {
-      console.log('active', {starting: ctx.startingScale});
-      scale.value = ctx.startingScale;
-    },
-    onEnd: (event) => {
-      // console.log('end', {event});
-    },
-    onFinish: (event) => {
-      console.log('finish', {event});
-    },
-    onCancel: (event) => {
-      // console.log('cancel', {event});
-    },
-    onFail: (event) => {
-      // console.log('fail', {event});
-    },
   });
 
   const s = StyleSheet.create({
@@ -83,7 +92,7 @@ const CustomRipple = () => {
     effect: {
       height: 20,
       width: 20,
-      backgroundColor: 'red',
+      backgroundColor: '#ccc',
       left: pressPosition.x - 10 || 0,
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
@@ -97,9 +106,7 @@ const CustomRipple = () => {
     },
   });
   return (
-    <LongPressGestureHandler
-      onGestureEvent={gestureHandler}
-      minDurationMs={100}>
+    <LongPressGestureHandler onGestureEvent={gestureHandler} minDurationMs={50}>
       <Animated.View style={s.container} onLayout={handleLayout}>
         <Animated.View style={[s.effect, animatedStyle]} />
         <View>
