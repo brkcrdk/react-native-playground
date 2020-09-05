@@ -25,8 +25,9 @@ const CustomRipple = () => {
   };
   useEffect(() => {
     if (size) {
-      const value = 0;
-      maxScale.value = value;
+      const {width, height} = size;
+      const scaleValue = Math.sqrt(width ** 2 + height ** 2);
+      maxScale.value = Math.round(scaleValue * 0.1);
     }
   }, [maxScale, size]);
 
@@ -37,8 +38,7 @@ const CustomRipple = () => {
       ctx.maxScale = maxScale.value;
     },
     onActive: (_, ctx) => {
-      console.log(ctx.maxScale);
-      scale.value = withTiming(50, {duration: 500});
+      scale.value = withTiming(ctx.maxScale, {duration: 500});
       opacity.value = withTiming(0.3, {duration: 50});
     },
     onEnd: () => {
@@ -65,8 +65,8 @@ const CustomRipple = () => {
       borderWidth: 1,
       borderColor: '#fff',
       padding: 10,
-      width: 350,
-      height: 350,
+      width: 300,
+      height: 550,
       overflow: 'hidden',
     },
     effect: {
