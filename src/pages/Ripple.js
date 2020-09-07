@@ -14,15 +14,11 @@ const Ripple = () => {
     },
   });
 
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-  const handleDecrement = () => {
-    setCount(count - 1);
-  };
-  const handleReset = () => {
-    setCount(0);
-  };
+  const handleIncrement = () => setCount(count + 1);
+
+  const handleDecrement = () => setCount(count - 1);
+
+  const handleReset = () => setCount(0);
 
   return (
     <Container>
