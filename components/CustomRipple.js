@@ -50,7 +50,7 @@ const CustomRipple = ({children, onPress = () => {}, ...props}) => {
     },
     onActive: (_, ctx) => {
       scale.value = withTiming(ctx.maxScale, {duration: 350});
-      opacity.value = withTiming(0.2, {duration: 50});
+      opacity.value = withTiming(0.3, {duration: 50});
     },
     onFinish: () => {
       opacity.value = withTiming(0);
