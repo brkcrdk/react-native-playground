@@ -31,12 +31,12 @@ const RipTest = () => {
             <Text color="#fff">Increment</Text>
           </View>
         </CustomRipple>
-        <CustomRipple>
+        <CustomRipple backgroundColor={currentTheme.danger}>
           <View>
             <Text color="#fff">Decrement</Text>
           </View>
         </CustomRipple>
-        <CustomRipple>
+        <CustomRipple backgroundColor={currentTheme.warning}>
           <View>
             <Text color="#fff">Reset</Text>
           </View>
