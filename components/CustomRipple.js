@@ -6,10 +6,10 @@ import Animated, {
   useAnimatedStyle,
   withTiming,
 } from 'react-native-reanimated';
-import {LongPressGestureHandler} from 'react-native-gesture-handler';
+import {LongPressGestureHandler, State} from 'react-native-gesture-handler';
 import {useTheme} from '../hooks';
 
-const CustomRipple = ({children, ...props}) => {
+const CustomRipple = ({children, onPress = () => {}, ...props}) => {
   const {currentTheme} = useTheme();
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
@@ -18,12 +18,6 @@ const CustomRipple = ({children, ...props}) => {
   const scale = useSharedValue(0);
   const opacity = useSharedValue(0);
 
-  const handleLayout = (e) => {
-    if (e && e.nativeEvent) {
-      const {height, width} = e.nativeEvent.layout;
-      setSize({width, height});
-    }
-  };
   useEffect(() => {
     if (size) {
       const {width, height} = size;
@@ -32,6 +26,20 @@ const CustomRipple = ({children, ...props}) => {
     }
   }, [maxScale, size]);
 
+  const handleLayout = (e) => {
+    if (e && e.nativeEvent) {
+      const {height, width} = e.nativeEvent.layout;
+      setSize({width, height});
+    }
+  };
+  const handlePress = (event) => {
+    if (event && event.nativeEvent) {
+      const {state} = event.nativeEvent;
+      if (state === State.END) {
+        return onPress();
+      }
+    }
+  };
   const gestureHandler = useAnimatedGestureHandler({
     onStart: (event, ctx) => {
       const {x, y} = event;
@@ -44,7 +52,7 @@ const CustomRipple = ({children, ...props}) => {
       scale.value = withTiming(ctx.maxScale, {duration: 350});
       opacity.value = withTiming(0.2, {duration: 50});
     },
-    onEnd: () => {
+    onFinish: () => {
       opacity.value = withTiming(0);
       setTimeout(() => {
         scale.value = 0;
@@ -89,8 +97,12 @@ const CustomRipple = ({children, ...props}) => {
       ],
     },
   });
+
   return (
-    <LongPressGestureHandler onGestureEvent={gestureHandler} minDurationMs={1}>
+    <LongPressGestureHandler
+      onGestureEvent={gestureHandler}
+      minDurationMs={1}
+      onHandlerStateChange={handlePress}>
       <Animated.View style={s.container} onLayout={handleLayout}>
         <Animated.View style={[s.effect, animatedStyle]} />
         <View>{children}</View>
