@@ -17,7 +17,6 @@ const RipTest = () => {
       justifyContent: 'space-around',
       flexDirection: 'row',
     },
-    textContainer: {},
   });
 
   return (
