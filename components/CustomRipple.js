@@ -65,12 +65,12 @@ const CustomRipple = ({children, ...props}) => {
 
   const s = StyleSheet.create({
     container: {
-      borderWidth: 1,
-      borderColor: currentTheme.primary,
       backgroundColor: currentTheme.primary,
-      padding: 10,
-      borderRadius: 10,
+      padding: 12,
+      borderRadius: 5,
       overflow: 'hidden',
+      justifyContent: 'center',
+      alignItems: 'center',
       ...props,
     },
     effect: {
