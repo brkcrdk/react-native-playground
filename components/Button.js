@@ -46,7 +46,6 @@ const Button = ({
       duration: 200,
       useNativeDriver: true,
     }).start();
-    props.onPressOut();
   };
   const animatedStyles = {
     view: {
