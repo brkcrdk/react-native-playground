@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
-import Text from './Text';
 import Animated, {
   useSharedValue,
   useAnimatedGestureHandler,
@@ -8,8 +7,10 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import {LongPressGestureHandler} from 'react-native-gesture-handler';
+import {useTheme} from '../hooks';
 
-const CustomRipple = () => {
+const CustomRipple = ({children, ...props}) => {
+  const {currentTheme} = useTheme();
   const [pressPosition, setPressPosition] = useState({});
   const [size, setSize] = useState({});
 
@@ -41,7 +42,7 @@ const CustomRipple = () => {
     },
     onActive: (_, ctx) => {
       scale.value = withTiming(ctx.maxScale, {duration: 350});
-      opacity.value = withTiming(0.3, {duration: 50});
+      opacity.value = withTiming(0.2, {duration: 50});
     },
     onEnd: () => {
       opacity.value = withTiming(0);
@@ -65,16 +66,17 @@ const CustomRipple = () => {
   const s = StyleSheet.create({
     container: {
       borderWidth: 1,
-      borderColor: '#fff',
+      borderColor: currentTheme.primary,
+      backgroundColor: currentTheme.primary,
       padding: 10,
-      width: 300,
-      height: 300,
+      borderRadius: 10,
       overflow: 'hidden',
+      ...props,
     },
     effect: {
       height: 20,
       width: 20,
-      backgroundColor: '#ccc',
+      backgroundColor: '#fff',
       left: pressPosition.x - 10 || 0,
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
@@ -88,18 +90,10 @@ const CustomRipple = () => {
     },
   });
   return (
-    <LongPressGestureHandler onGestureEvent={gestureHandler} minDurationMs={50}>
+    <LongPressGestureHandler onGestureEvent={gestureHandler} minDurationMs={1}>
       <Animated.View style={s.container} onLayout={handleLayout}>
         <Animated.View style={[s.effect, animatedStyle]} />
-        <View>
-          <Text>CustomRipple component is here</Text>
-          <Text>
-            Press position: x is {pressPosition.x}, y is {pressPosition.y}
-          </Text>
-          <Text>
-            Sizes: x is {size.height}, y is {size.width}
-          </Text>
-        </View>
+        <View>{children}</View>
       </Animated.View>
     </LongPressGestureHandler>
   );
