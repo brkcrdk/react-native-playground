@@ -1,12 +1,26 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, StyleSheet} from 'react-native';
+import Animated, {
+  withTiming,
+  useAnimatedStyle,
+  useSharedValue,
+} from 'react-native-reanimated';
+import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Text from './Text';
 import {useTheme} from '../hooks';
 
 const Accordion = () => {
   const {currentTheme} = useTheme();
-  const [scrollHeight, setScrollHeight] = useState();
+  const [scrollHeight, setScrollHeight] = useState(100);
   const [active, setActive] = useState(false);
+  const height = useSharedValue(0);
+
+  const animatedStyle = useAnimatedStyle(() => {
+    return {
+      height: height.value,
+    };
+  });
+
   const s = StyleSheet.create({
     container: {
       width: '100%',
@@ -18,38 +32,35 @@ const Accordion = () => {
       borderRadius: 4,
       padding: 5,
       width: '100%',
+      marginVertical: 5,
+      overflow: 'hidden',
     },
     content: {},
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between',
     },
-    shadowContainer: {
-      shadowColor: 'red',
-      elevation: 10,
-      shadowOffset: {width: 0, height: 3},
-      shadowOpacity: 0.5,
-      shadowRadius: 10,
-      width: '100%',
-      marginVertical: 20,
-      backgroundColor: 'white',
-      borderRadius: 15,
-      padding: 20,
-    },
   });
 
   return (
     <View style={s.container}>
       <Text color={currentTheme.text}>Accordion component is here</Text>
-      <View
-        style={s.shadowContainer}
-        onLayout={(e) => {
-          console.log(e.nativeEvent.layout.height);
-        }}>
-        <Text color="black">Accordion Header</Text>
-        <View>
+      <View style={s.accordionItem}>
+        <TouchableWithoutFeedback
+          onPress={(e) => {
+            setActive(!active);
+            if (active) {
+              return (height.value = withTiming(100, {duration: 300}));
+            }
+            return (height.value = withTiming(0, {duration: 300}));
+          }}>
+          <View>
+            <Text color="black">Accordion Header</Text>
+          </View>
+        </TouchableWithoutFeedback>
+        <Animated.View style={[s.content, animatedStyle]}>
           <Text>Container</Text>
-        </View>
+        </Animated.View>
       </View>
     </View>
   );
