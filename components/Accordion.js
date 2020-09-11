@@ -25,16 +25,16 @@ const Accordion = () => {
       justifyContent: 'space-between',
     },
     shadowContainer: {
+      shadowColor: 'red',
+      elevation: 10,
+      shadowOffset: {width: 0, height: 3},
+      shadowOpacity: 0.5,
+      shadowRadius: 10,
       width: '100%',
       marginVertical: 20,
       backgroundColor: 'white',
       borderRadius: 15,
       padding: 20,
-      elevation: 10,
-      shadowColor: '#000',
-      shadowOffset: {width: 0, height: 3},
-      shadowOpacity: 0.5,
-      shadowRadius: 10,
     },
   });
 
