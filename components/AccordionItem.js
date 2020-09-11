@@ -23,7 +23,7 @@ const Accordion = () => {
   const s = StyleSheet.create({
     container: {
       width: '100%',
-      padding: 10,
+      padding: 5,
     },
     accordionItem: {
       borderWidth: 1,
@@ -31,7 +31,6 @@ const Accordion = () => {
       borderRadius: 4,
       padding: 5,
       width: '100%',
-      marginVertical: 5,
       overflow: 'hidden',
     },
     content: {},
@@ -43,7 +42,6 @@ const Accordion = () => {
 
   return (
     <View style={s.container}>
-      <Text color={currentTheme.text}>Accordion component is here</Text>
       <View style={s.accordionItem}>
         <TouchableWithoutFeedback
           onPress={(e) => {
