@@ -11,7 +11,6 @@ import {useTheme} from '../hooks';
 
 const Accordion = () => {
   const {currentTheme} = useTheme();
-  const [scrollHeight, setScrollHeight] = useState(100);
   const [active, setActive] = useState(false);
   const height = useSharedValue(0);
 
