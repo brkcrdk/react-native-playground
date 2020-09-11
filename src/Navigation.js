@@ -12,7 +12,7 @@ const Navigation = () => {
 
   return (
     <Drawer.Navigator
-      initialRouteName="Custom Ripple"
+      initialRouteName="Accordion"
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Button" component={Button} />
