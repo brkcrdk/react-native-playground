@@ -1,10 +1,12 @@
 import React from 'react';
 import {Container, Text, Accordion} from '../../components';
-
+import {useTheme} from '../../hooks';
 const AccordionTest = () => {
+  const {currentTheme} = useTheme();
+
   return (
     <Container>
-      <Text color="#fff" fontSize={20} marginBottom={20}>
+      <Text color={currentTheme.text} fontSize={20} marginBottom={20}>
         Accordion component example
       </Text>
       <Accordion />
