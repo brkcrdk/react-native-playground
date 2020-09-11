@@ -89,12 +89,6 @@ const CustomRipple = ({children, onPress = () => {}, ...props}) => {
       top: pressPosition.y - 10 || 0,
       position: 'absolute',
       borderRadius: size.width,
-      opacity: opacity.value,
-      transform: [
-        {
-          scale: scale.value,
-        },
-      ],
     },
   });
 
