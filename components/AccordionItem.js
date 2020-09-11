@@ -1,5 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useEffect, useState, useRef} from 'react';
+import {View, StyleSheet, ScrollView} from 'react-native';
 import Animated, {
   withTiming,
   useAnimatedStyle,
@@ -13,8 +13,10 @@ const Accordion = () => {
   // const {currentTheme} = useTheme();
   const [active, setActive] = useState(false);
   const height = useSharedValue(0);
+  const contentRef = useRef();
 
   const handlePress = () => {
+    console.log(contentRef.current);
     if (active) {
       setActive(false);
     } else {
@@ -47,7 +49,9 @@ const Accordion = () => {
       width: '100%',
       overflow: 'hidden',
     },
-    content: {},
+    content: {
+      height: '100%',
+    },
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -64,9 +68,12 @@ const Accordion = () => {
             <Text color="black">Accordion Header</Text>
           </View>
         </TouchableWithoutFeedback>
-        <Animated.View style={[s.content, animatedStyle]}>
+        <Animated.ScrollView
+          onContentSizeChange={(e) => console.log(e)}
+          style={[s.content, animatedStyle]}
+          ref={contentRef}>
           <Text>Accordion Content</Text>
-        </Animated.View>
+        </Animated.ScrollView>
       </View>
     </View>
   );
