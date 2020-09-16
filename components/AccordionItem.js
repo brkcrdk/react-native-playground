@@ -9,14 +9,14 @@ import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Text from './Text';
 // import {useTheme} from '../hooks';
 
-const Accordion = () => {
+const Accordion = ({children, title = 'Title'}) => {
   // const {currentTheme} = useTheme();
   const [active, setActive] = useState(false);
+  const [scrollHeight, setScrollHeight] = useState(0);
   const height = useSharedValue(0);
   const contentRef = useRef();
 
   const handlePress = () => {
-    console.log(contentRef.current);
     if (active) {
       setActive(false);
     } else {
@@ -25,10 +25,10 @@ const Accordion = () => {
   };
   useEffect(() => {
     if (active) {
-      return (height.value = withTiming(100, {duration: 300}));
+      return (height.value = withTiming(scrollHeight, {duration: 300}));
     }
     return (height.value = withTiming(0, {duration: 300}));
-  }, [active, height]);
+  }, [active, height, scrollHeight]);
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -49,9 +49,7 @@ const Accordion = () => {
       width: '100%',
       overflow: 'hidden',
     },
-    content: {
-      height: '100%',
-    },
+    content: {},
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between',
@@ -65,14 +63,16 @@ const Accordion = () => {
       <View style={s.accordionItem}>
         <TouchableWithoutFeedback onPress={handlePress}>
           <View style={s.header}>
-            <Text color="black">Accordion Header</Text>
+            <Text color="black">{title}</Text>
           </View>
         </TouchableWithoutFeedback>
         <Animated.ScrollView
-          onContentSizeChange={(e) => console.log(e)}
+          onContentSizeChange={(_, contentHeight) =>
+            setScrollHeight(contentHeight)
+          }
           style={[s.content, animatedStyle]}
           ref={contentRef}>
-          <Text>Accordion Content</Text>
+          {children}
         </Animated.ScrollView>
       </View>
     </View>
