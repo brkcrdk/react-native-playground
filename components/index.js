@@ -6,7 +6,7 @@ import Container from './Container';
 import CustomDrawer from './CustomDrawer';
 import Accordion from './Accordion';
 import CustomRipple from './CustomRipple';
-
+import RotatingIcon from './RotatingIcon';
 export {
   Text,
   Button,
@@ -16,4 +16,5 @@ export {
   CustomDrawer,
   Accordion,
   CustomRipple,
+  RotatingIcon,
 };
