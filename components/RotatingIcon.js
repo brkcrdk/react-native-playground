@@ -1,5 +1,6 @@
-import React, {useRef, useEffect} from 'react';
-import {View, Text, Animated, StyleSheet} from 'react-native';
+import React, {useEffect} from 'react';
+import {View, Text, StyleSheet} from 'react-native';
+import Animated, {withTiming, useSharedValue} from 'react-native-reanimated';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const RotatingIcon = ({
@@ -8,31 +9,33 @@ const RotatingIcon = ({
   size = 16,
   isActive = false,
 }) => {
-  const rotateAnim = useRef(new Animated.Value(0)).current;
+  const iconRotate = useSharedValue(0);
+
+  useEffect(() => {
+    if (isActive) {
+      return (iconRotate.value = withTiming(90, {duration: 300}));
+    }
+    return (iconRotate.value = withTiming(0, {duration: 300}));
+  }, [isActive, iconRotate]);
+
+  const rotateDegree = `${iconRotate.value}deg`;
+
   const s = StyleSheet.create({
     icon: {
       color: 'red',
+      transform: [
+        {
+          rotate: rotateDegree,
+        },
+      ],
     },
   });
-  // useEffect(() => {
-  //   if(isActive)
-  // }, []);
-  // const animatedStyles = {
-  //   icon: {
-  //     transform: [
-  //       {
-  //         rotate: rotateAnim.interpolate({
-  //           inputRange: [0, 1],
-  //           outputRange: ['0deg', '90deg'],
-  //         }),
-  //       },
-  //     ],
-  //   },
-  // };
+
   return (
     <View>
-      <Text>{JSON.stringify(isActive)}</Text>
-      <Icon name={name} color={color} size={size} style={s.icon} />
+      <Animated.View style={s.icon}>
+        <Icon name={name} color={color} size={size} />
+      </Animated.View>
     </View>
   );
 };
