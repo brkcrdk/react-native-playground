@@ -1,12 +1,14 @@
 import React from 'react';
-import {StyleSheet, Text, FlatList} from 'react-native';
+import {StyleSheet, FlatList} from 'react-native';
+import Text from './Text';
 import AccordionItem from './AccordionItem';
-
+import {useTheme} from '../hooks';
 const Accordion = () => {
+  const {currentTheme} = useTheme();
+
   const s = StyleSheet.create({
     container: {
       width: '100%',
-      height: 200,
     },
   });
   const DATA = [
@@ -39,7 +41,9 @@ const Accordion = () => {
       renderItem={({item}) => {
         return (
           <AccordionItem title={item.title}>
-            <Text>{item.content}</Text>
+            <Text color={currentTheme.text} fontSize={13} fontWeight="100">
+              {item.content}
+            </Text>
           </AccordionItem>
         );
       }}

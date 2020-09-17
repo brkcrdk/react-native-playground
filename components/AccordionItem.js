@@ -66,7 +66,7 @@ const Accordion = ({children, title = 'Title'}) => {
       <View style={s.accordionItem}>
         <TouchableWithoutFeedback onPress={handlePress}>
           <View style={s.header}>
-            <Text color={currentTheme.text} fontWeight="700">
+            <Text color={currentTheme.text} fontWeight="700" fontSize={16}>
               {title}
             </Text>
           </View>
