@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import Animated, {withTiming, useSharedValue} from 'react-native-reanimated';
+import React, {useEffect, useRef, useCallback} from 'react';
+import {View, Text, StyleSheet, Animated} from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const RotatingIcon = ({
@@ -9,23 +8,48 @@ const RotatingIcon = ({
   size = 16,
   isActive = false,
 }) => {
-  const iconRotate = useSharedValue(0);
+  const rotateAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (isActive) {
-      return (iconRotate.value = withTiming(90, {duration: 300}));
+      rotateActive();
     }
-    return (iconRotate.value = withTiming(0, {duration: 300}));
-  }, [isActive, iconRotate]);
+    return rotateInActive();
+  }, [isActive, rotateActive, rotateInActive]);
 
-  const rotateDegree = `${iconRotate.value}deg`;
+  const rotateActive = useCallback(() => {
+    Animated.timing(rotateAnim, {
+      toValue: 1,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [rotateAnim]);
+  const rotateInActive = useCallback(() => {
+    Animated.timing(rotateAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+  }, [rotateAnim]);
+
+  const animatedStyles = {
+    view: {
+      transform: [
+        {
+          rotate: rotateAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: ['0deg', '90deg'],
+          }),
+        },
+      ],
+    },
+  };
 
   const s = StyleSheet.create({
     icon: {
-      color: 'red',
       transform: [
         {
-          rotate: rotateDegree,
+          rotate: rotateAnim,
         },
       ],
     },
@@ -33,7 +57,7 @@ const RotatingIcon = ({
 
   return (
     <View>
-      <Animated.View style={s.icon}>
+      <Animated.View style={[s.icon, animatedStyles.view]}>
         <Icon name={name} color={color} size={size} />
       </Animated.View>
     </View>
