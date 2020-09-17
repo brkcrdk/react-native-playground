@@ -7,10 +7,10 @@ import Animated, {
 } from 'react-native-reanimated';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
 import Text from './Text';
-// import {useTheme} from '../hooks';
+import {useTheme} from '../hooks';
 
 const Accordion = ({children, title = 'Title'}) => {
-  // const {currentTheme} = useTheme();
+  const {currentTheme} = useTheme();
   const [active, setActive] = useState(false);
   const [scrollHeight, setScrollHeight] = useState(0);
   const height = useSharedValue(0);
@@ -49,12 +49,15 @@ const Accordion = ({children, title = 'Title'}) => {
       width: '100%',
       overflow: 'hidden',
     },
-    content: {},
+    content: {
+      paddingHorizontal: 10,
+    },
     header: {
       flexDirection: 'row',
       justifyContent: 'space-between',
       width: '100%',
-      padding: 10,
+      paddingVertical: 10,
+      paddingHorizontal: 5,
     },
   });
 
@@ -63,7 +66,9 @@ const Accordion = ({children, title = 'Title'}) => {
       <View style={s.accordionItem}>
         <TouchableWithoutFeedback onPress={handlePress}>
           <View style={s.header}>
-            <Text color="black">{title}</Text>
+            <Text color={currentTheme.text} fontWeight="700">
+              {title}
+            </Text>
           </View>
         </TouchableWithoutFeedback>
         <Animated.ScrollView
