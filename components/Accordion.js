@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Text,
-  FlatList,
-  SafeAreaView,
-} from 'react-native';
+import {StyleSheet, Text, FlatList} from 'react-native';
 import AccordionItem from './AccordionItem';
 
 const Accordion = () => {
