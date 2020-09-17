@@ -1,5 +1,5 @@
 import React, {useEffect, useState, useRef} from 'react';
-import {View, StyleSheet, ScrollView} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Animated, {
   withTiming,
   useAnimatedStyle,
@@ -25,7 +25,8 @@ const Accordion = ({children, title = 'Title'}) => {
   };
   useEffect(() => {
     if (active) {
-      return (height.value = withTiming(scrollHeight, {duration: 300}));
+      // Scrollheight + 20 => To add 20px padding to content bottom
+      return (height.value = withTiming(scrollHeight + 20, {duration: 300}));
     }
     return (height.value = withTiming(0, {duration: 300}));
   }, [active, height, scrollHeight]);
