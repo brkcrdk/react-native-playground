@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   ScrollView,
+  Text,
   FlatList,
   SafeAreaView,
 } from 'react-native';
@@ -12,6 +13,7 @@ const Accordion = () => {
   const s = StyleSheet.create({
     container: {
       width: '100%',
+      height: 200,
     },
   });
   const DATA = [
@@ -30,13 +32,16 @@ const Accordion = () => {
   ];
 
   return (
-    <SafeAreaView>
+    <View>
       <FlatList
+        style={s.container}
         data={DATA}
-        renderItem={<AccordionItem />}
+        renderItem={({item}) => {
+          return <AccordionItem title={item.title} />;
+        }}
         keyExtractor={(item) => item.id}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
