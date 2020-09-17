@@ -6,6 +6,8 @@ import Animated, {
   useSharedValue,
 } from 'react-native-reanimated';
 import {TouchableWithoutFeedback} from 'react-native-gesture-handler';
+import Icon from 'react-native-vector-icons/AntDesign';
+
 import Text from './Text';
 import {useTheme} from '../hooks';
 
@@ -70,6 +72,11 @@ const Accordion = ({children, title = 'Title'}) => {
             <Text color={currentTheme.text} fontWeight="700" fontSize={16}>
               {title}
             </Text>
+            <Icon
+              name={active ? 'down' : 'up'}
+              color={currentTheme.primary}
+              size={17}
+            />
           </View>
         </TouchableWithoutFeedback>
         <Animated.ScrollView
