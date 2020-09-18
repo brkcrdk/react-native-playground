@@ -6,6 +6,7 @@ import Container from './Container';
 import CustomDrawer from './CustomDrawer';
 import Accordion from './Accordion';
 import CustomRipple from './CustomRipple';
+import CustomSwitch from './CustomSwitch';
 
 export {
   Text,
@@ -16,4 +17,5 @@ export {
   CustomDrawer,
   Accordion,
   CustomRipple,
+  CustomSwitch,
 };

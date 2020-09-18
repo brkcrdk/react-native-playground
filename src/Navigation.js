@@ -7,18 +7,20 @@ import Button from './pages/Button';
 import Ripple from './pages/Ripple';
 import AccordionTest from './pages/AccordionTest';
 import RipTest from './pages/RipTest';
+import Switch from './pages/Switch';
 const Navigation = () => {
   const Drawer = createDrawerNavigator();
 
   return (
     <Drawer.Navigator
-      initialRouteName="Accordion"
+      initialRouteName="Switch"
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Button" component={Button} />
       <Drawer.Screen name="Ripple" component={Ripple} />
       <Drawer.Screen name="Custom Ripple" component={RipTest} />
       <Drawer.Screen name="Accordion" component={AccordionTest} />
+      <Drawer.Screen name="Switch" component={Switch} />
     </Drawer.Navigator>
   );
 };
