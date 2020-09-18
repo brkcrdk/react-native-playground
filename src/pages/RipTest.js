@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Container, Text, CustomRipple, Button} from '../../components';
+import {Container, Text, CustomRipple} from '../../components';
 import {useTheme} from '../../hooks';
 
 const RipTest = () => {
