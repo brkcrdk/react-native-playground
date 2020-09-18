@@ -7,19 +7,20 @@ import {useTheme} from '../hooks';
 const DrawerIcon = ({navigation, ...props}) => {
   const {currentTheme} = useTheme();
   const s = StyleSheet.create({
-    container: {},
+    container: {
+      maxWidth: 35,
+    },
   });
   return (
-    <View>
-      <Icon
-        name="menu"
-        color={currentTheme.primary}
-        size={35}
-        onPress={() => {
-          navigation && navigation.openDrawer();
-        }}
-      />
-    </View>
+    <Icon
+      style={s.container}
+      name="menu"
+      color={currentTheme.primary}
+      size={35}
+      onPress={() => {
+        navigation && navigation.openDrawer();
+      }}
+    />
   );
 };
 
