@@ -1,6 +1,5 @@
 import React from 'react';
-import {View} from 'react-native';
-import {Container, Text} from '../../components';
+import {Container, Text, CustomSwitch} from '../../components';
 import {useTheme} from '../../hooks';
 
 const Switch = () => {
@@ -10,6 +9,7 @@ const Switch = () => {
       <Text color={currentTheme.text} fontSize={20} marginBottom={20}>
         Switch Component Example
       </Text>
+      <CustomSwitch />
     </Container>
   );
 };
