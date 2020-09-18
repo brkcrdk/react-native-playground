@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Switch} from 'react-native';
 
-const Switch = () => {
+const CustomSwitch = () => {
   return (
     <View>
       <Text>Switch is here</Text>
@@ -9,4 +9,4 @@ const Switch = () => {
   );
 };
 
-export default Switch;
+export default CustomSwitch;
