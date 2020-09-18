@@ -21,7 +21,7 @@ const RipTest = () => {
 
   return (
     <Container>
-      <Text color="#fff" fontSize={20} marginBottom={20}>
+      <Text color={currentTheme.text} fontSize={20} marginBottom={20}>
         Count: {count}
       </Text>
       <View style={s.container}>
