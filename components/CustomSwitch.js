@@ -34,6 +34,7 @@ const CustomSwitch = () => {
       ],
     };
   });
+
   const s = StyleSheet.create({
     container: {
       width: 75,
@@ -50,6 +51,7 @@ const CustomSwitch = () => {
       backgroundColor: '#FFF',
     },
   });
+
   return (
     <TapGestureHandler onHandlerStateChange={toggleSwitch}>
       <View style={s.container}>
