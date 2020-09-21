@@ -5,9 +5,9 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-  interpolateColors,
 } from 'react-native-reanimated';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
+
 const CustomSwitch = () => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(false);
@@ -18,7 +18,7 @@ const CustomSwitch = () => {
   };
 
   const translateX = useSharedValue(0);
-  const color = useSharedValue(0);
+
   useEffect(() => {
     if (active) {
       return (translateX.value = withTiming(40, {duration: 300}));
