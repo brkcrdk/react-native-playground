@@ -6,7 +6,6 @@ import {
   CustomSwitch,
   NativeSwitch,
   ColorInterpolation,
-  CustomRipple,
 } from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
@@ -47,9 +46,6 @@ const Switch = () => {
         </View>
       </View>
       <View style={s.interpolation}>
-        <CustomRipple>
-          <Text color="#fff">Interpolate Colors</Text>
-        </CustomRipple>
         <ColorInterpolation />
       </View>
     </Container>
