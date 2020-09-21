@@ -1,22 +1,22 @@
 import React, {useState} from 'react';
-import {View, Text, Switch} from 'react-native';
-
-// TODO: Create custom switch component with view and reanimated.
+import {View, StyleSheet} from 'react-native';
+import {useTheme} from '../hooks';
 
 const CustomSwitch = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(!isEnabled);
+  const s = StyleSheet.create({
+    container: {
+      borderWidth: 1,
+      width: 75,
+      height: 25,
+    },
+    switch: {},
+  });
   return (
-    <Switch
-      trackColor={{
-        false: '#767577',
-        true: '#81b0ff',
-      }}
-      thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
-      ios_backgroundColor="#3e3e3e"
-      onValueChange={toggleSwitch}
-      value={isEnabled}
-    />
+    <View style={s.container}>
+      <View style={s.switch} />
+    </View>
   );
 };
 
