@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import {View, Text, Switch} from 'react-native';
+import {Switch} from 'react-native';
 
-// TODO: Create custom switch component with view and reanimated.
-
-const NativeSwitch = () => {
+const NativeSwitchg = () => {
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(!isEnabled);
   return (
@@ -20,4 +18,4 @@ const NativeSwitch = () => {
   );
 };
 
-export default NativeSwitch;
+export default NativeSwitchg;
