@@ -8,6 +8,7 @@ import Accordion from './Accordion';
 import CustomRipple from './CustomRipple';
 import CustomSwitch from './CustomSwitch';
 import NativeSwitch from './NativeSwitch';
+import ColorInterpolation from './ColorInterpolation';
 
 export {
   Text,
@@ -20,4 +21,5 @@ export {
   CustomRipple,
   CustomSwitch,
   NativeSwitch,
+  ColorInterpolation,
 };

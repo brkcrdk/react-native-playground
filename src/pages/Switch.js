@@ -1,6 +1,13 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Container, Text, CustomSwitch, NativeSwitch} from '../../components';
+import {
+  Container,
+  Text,
+  CustomSwitch,
+  NativeSwitch,
+  ColorInterpolation,
+  CustomRipple,
+} from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
   const {currentTheme} = useTheme();
@@ -14,6 +21,9 @@ const Switch = () => {
     },
     switch: {
       alignItems: 'center',
+    },
+    interpolation: {
+      marginTop: 20,
     },
   });
 
@@ -35,6 +45,12 @@ const Switch = () => {
           </Text>
           <NativeSwitch />
         </View>
+      </View>
+      <View style={s.interpolation}>
+        <CustomRipple>
+          <Text color="#fff">Interpolate Colors</Text>
+        </CustomRipple>
+        <ColorInterpolation />
       </View>
     </Container>
   );
