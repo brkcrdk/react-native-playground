@@ -1,9 +1,36 @@
-import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import React, {useRef, useState, useEffect} from 'react';
+import {View, StyleSheet, Animated} from 'react-native';
 import Text from './Text';
 import CustomRipple from './CustomRipple';
 
 const ColorInterpolation = () => {
+  const [active, setActive] = useState(false);
+  const colorAnim = useRef(new Animated.Value(0)).current;
+
+  const toggleAnim = () => {
+    setActive(!active);
+  };
+  useEffect(() => {
+    console.log({colorAnim, active});
+  }, [colorAnim, active]);
+
+  useEffect(() => {
+    Animated.timing(colorAnim, {
+      toValue: 1,
+      duration: 300,
+      useNativeDriver: true,
+    });
+  }, [colorAnim]);
+
+  const animatedStyle = {
+    color: {
+      backgroundColor: colorAnim.interpolate({
+        inputRange: [0, 1],
+        outputRange: ['red', 'black'],
+      }),
+    },
+  };
+
   const s = StyleSheet.create({
     container: {
       alignItems: 'center',
@@ -18,10 +45,11 @@ const ColorInterpolation = () => {
   return (
     <View style={s.container}>
       <Text margin={20}>ColorInterpolation is here</Text>
-      <CustomRipple>
+      <CustomRipple onPress={toggleAnim}>
         <Text color="#fff">Interpolate Colors</Text>
       </CustomRipple>
-      <View style={s.colorContainer} />
+
+      <Animated.View style={[s.colorContainer, animatedStyle]} />
     </View>
   );
 };
