@@ -14,14 +14,6 @@ const ColorInterpolation = () => {
     console.log({colorAnim, active});
   }, [colorAnim, active]);
 
-  useEffect(() => {
-    Animated.timing(colorAnim, {
-      toValue: 1,
-      duration: 300,
-      useNativeDriver: true,
-    });
-  }, [colorAnim]);
-
   const animatedStyle = {
     color: {
       backgroundColor: colorAnim.interpolate({
@@ -49,7 +41,9 @@ const ColorInterpolation = () => {
         <Text color="#fff">Interpolate Colors</Text>
       </CustomRipple>
 
-      <Animated.View style={[s.colorContainer, animatedStyle]} />
+      <Animated.View
+        style={[s.colorContainer, {backgroundColor: animatedStyle}]}
+      />
     </View>
   );
 };
