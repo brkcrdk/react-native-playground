@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useTheme} from '../hooks';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  interpolateColors,
 } from 'react-native-reanimated';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
 const CustomSwitch = () => {
@@ -17,10 +18,10 @@ const CustomSwitch = () => {
   };
 
   const translateX = useSharedValue(0);
-
+  const color = useSharedValue(0);
   useEffect(() => {
     if (active) {
-      return (translateX.value = withTiming(20, {duration: 300}));
+      return (translateX.value = withTiming(40, {duration: 300}));
     }
     return (translateX.value = withTiming(0, {duration: 300}));
   }, [active, translateX]);
@@ -54,9 +55,9 @@ const CustomSwitch = () => {
 
   return (
     <TapGestureHandler onHandlerStateChange={toggleSwitch}>
-      <View style={s.container}>
+      <Animated.View style={s.container}>
         <Animated.View style={[s.switch, animatedTranslate]} />
-      </View>
+      </Animated.View>
     </TapGestureHandler>
   );
 };
