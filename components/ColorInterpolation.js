@@ -11,8 +11,11 @@ const ColorInterpolation = () => {
 
   const handleToggle = () => {
     setActive(!active);
-
-    console.log(colorAnimation);
+    Animated.timing(colorAnimation, {
+      toValue: 1,
+      duration: 2000,
+      useNativeDriver: true,
+    }).start();
   };
 
   const s = StyleSheet.create({
@@ -20,19 +23,20 @@ const ColorInterpolation = () => {
       alignItems: 'center',
     },
     colorContainer: {
-      width: 100,
       backgroundColor: 'red',
+      width: 100,
       height: 50,
       margin: 20,
+      opacity: 1,
     },
   });
+
   return (
     <View style={s.container}>
       <Text margin={20}>ColorInterpolation is here</Text>
       <CustomRipple onPress={handleToggle}>
         <Text color="#fff">Interpolate Colors</Text>
       </CustomRipple>
-
       <Animated.View style={[s.colorContainer]} />
     </View>
   );
