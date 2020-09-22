@@ -1,32 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import {View, StyleSheet} from 'react-native';
-import Animated, {
-  useSharedValue,
-  interpolateColors,
-  withTiming,
-} from 'react-native-reanimated';
+import {View, StyleSheet, Animated} from 'react-native';
+
 import Text from './Text';
 import CustomRipple from './CustomRipple';
 
 const ColorInterpolation = () => {
   const [active, setActive] = useState(false);
-  const color = useSharedValue(0);
 
   const handleToggle = () => {
     setActive(!active);
   };
-
-  useEffect(() => {
-    if (active) {
-      return (color.value = withTiming(1, {duration: 500}));
-    }
-    return (color.value = withTiming(0, {duration: 500}));
-  }, [active, color]);
-
-  const customColor = interpolateColors(color.value, {
-    inputRange: [0, 0.5, 1],
-    outputColorRange: ['#333', '#eee', '#7e7'],
-  });
 
   const s = StyleSheet.create({
     container: {
@@ -34,6 +17,7 @@ const ColorInterpolation = () => {
     },
     colorContainer: {
       width: 100,
+      backgroundColor: 'red',
       height: 50,
       margin: 20,
     },
@@ -45,9 +29,7 @@ const ColorInterpolation = () => {
         <Text color="#fff">Interpolate Colors</Text>
       </CustomRipple>
 
-      <Animated.View
-        style={[s.colorContainer, {backgroundColor: customColor}]}
-      />
+      <Animated.View style={[s.colorContainer]} />
     </View>
   );
 };
