@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {View, StyleSheet, Animated} from 'react-native';
 
 import Text from './Text';
@@ -7,8 +7,12 @@ import CustomRipple from './CustomRipple';
 const ColorInterpolation = () => {
   const [active, setActive] = useState(false);
 
+  const colorAnimation = useRef(new Animated.Value(0)).current;
+
   const handleToggle = () => {
     setActive(!active);
+
+    console.log(colorAnimation);
   };
 
   const s = StyleSheet.create({
