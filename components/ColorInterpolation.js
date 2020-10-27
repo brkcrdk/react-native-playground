@@ -51,7 +51,7 @@ const ColorInterpolation = () => {
     },
     colorContainer: {
       width: 100,
-      height: 50,
+      height: 40,
       margin: 20,
     },
   });
