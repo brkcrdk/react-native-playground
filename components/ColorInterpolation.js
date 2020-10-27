@@ -8,24 +8,36 @@ const ColorInterpolation = () => {
   const [active, setActive] = useState(false);
 
   const colorAnimation = useRef(new Animated.Value(0)).current;
-  const textAnimation = useRef(new Animated.Value(0)).current;
 
   const handleToggle = () => {
+    if (active) {
+      setActive(false);
+      closeAnim();
+    } else {
+      setActive(true);
+      openAnim();
+    }
+  };
+
+  const closeAnim = () => {
+    Animated.timing(colorAnimation, {
+      toValue: 0,
+      duration: 600,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const openAnim = () => {
     Animated.timing(colorAnimation, {
       toValue: 1,
-      duration: 2000,
-      useNativeDriver: true,
-    }).start();
-    Animated.timing(textAnimation, {
-      toValue: 1,
-      duration: 2000,
+      duration: 600,
       useNativeDriver: false,
     }).start();
   };
 
   const animatedBg = {
     view: {
-      backgroundColor: textAnimation.interpolate({
+      backgroundColor: colorAnimation.interpolate({
         inputRange: [0, 1],
         outputRange: ['red', 'yellow'],
         extrapolate: 'clamp',
