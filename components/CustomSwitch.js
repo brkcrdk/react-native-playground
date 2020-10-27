@@ -55,7 +55,7 @@ const CustomSwitch = () => {
 
   return (
     <TapGestureHandler onHandlerStateChange={toggleSwitch}>
-      <Animated.View style={s.container}>
+      <Animated.View style={[s.container]}>
         <Animated.View style={[s.switch, animatedTranslate]} />
       </Animated.View>
     </TapGestureHandler>
