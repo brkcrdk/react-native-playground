@@ -6,6 +6,7 @@ import {
   CustomSwitch,
   NativeSwitch,
   ColorInterpolation,
+  CustomTest,
 } from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
@@ -48,6 +49,7 @@ const Switch = () => {
       <View style={s.interpolation}>
         <ColorInterpolation />
       </View>
+      <CustomTest />
     </Container>
   );
 };
