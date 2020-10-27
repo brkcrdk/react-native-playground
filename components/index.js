@@ -9,7 +9,7 @@ import CustomRipple from './CustomRipple';
 import CustomSwitch from './CustomSwitch';
 import NativeSwitch from './NativeSwitch';
 import ColorInterpolation from './ColorInterpolation';
-
+import CustomTest from './customTest';
 export {
   Text,
   Button,
@@ -22,4 +22,5 @@ export {
   CustomSwitch,
   NativeSwitch,
   ColorInterpolation,
+  CustomTest,
 };
