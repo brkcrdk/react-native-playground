@@ -47,7 +47,7 @@ const CustomSwitch = () => {
     },
     switch: {
       width: 25,
-      height: 23,
+      height: 20,
       borderRadius: 25 / 2,
       backgroundColor: '#FFF',
     },
