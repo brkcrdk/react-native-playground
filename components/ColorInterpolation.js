@@ -29,7 +29,7 @@ const ColorInterpolation = () => {
 
   const openAnim = () => {
     Animated.timing(colorAnimation, {
-      toValue: 1,
+      toValue: 40,
       duration: 600,
       useNativeDriver: false,
     }).start();
@@ -38,7 +38,7 @@ const ColorInterpolation = () => {
   const animatedBg = {
     view: {
       backgroundColor: colorAnimation.interpolate({
-        inputRange: [0, 1],
+        inputRange: [0, 40],
         outputRange: ['red', 'yellow'],
         extrapolate: 'clamp',
       }),
