@@ -3,40 +3,44 @@ import {StyleSheet, Animated} from 'react-native';
 
 const Background = ({
   toValue = 1,
-  range = {start: 0, end: 1},
-  colors = {start: 'red', end: 'blue'},
+  ranges = {
+    inputRange: [0, toValue],
+    outputRange: ['red', 'blue'],
+  },
   toggle = true,
+  duration = 600,
 }) => {
   const colorAnimation = useRef(new Animated.Value(0)).current;
+  const {inputRange, outputRange} = ranges;
 
   const initial = useCallback(() => {
     Animated.timing(colorAnimation, {
       toValue: 0,
-      duration: 600,
+      duration,
       useNativeDriver: false,
     }).start();
-  }, [colorAnimation]);
+  }, [colorAnimation, duration]);
 
   const end = useCallback(() => {
     Animated.timing(colorAnimation, {
       toValue: toValue,
-      duration: 600,
+      duration,
       useNativeDriver: false,
     }).start();
-  }, [colorAnimation, toValue]);
+  }, [colorAnimation, toValue, duration]);
 
   useEffect(() => {
     if (toggle) {
-      return initial();
+      return end();
     }
-    return end();
+    return initial();
   }, [toggle, end, initial]);
 
   const animatedBg = {
     view: {
       backgroundColor: colorAnimation.interpolate({
-        inputRange: [0, toValue],
-        outputRange: [colors.start, colors.end],
+        inputRange,
+        outputRange,
         extrapolate: 'clamp',
       }),
     },
