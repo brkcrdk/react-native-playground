@@ -2,6 +2,7 @@ import React, {useEffect, useCallback, useRef} from 'react';
 import {StyleSheet, Animated} from 'react-native';
 
 const Background = ({
+  toValue = 1,
   range = {start: 0, end: 1},
   colors = {start: 'red', end: 'blue'},
   toggle = true,
@@ -10,40 +11,31 @@ const Background = ({
 
   const initial = useCallback(() => {
     Animated.timing(colorAnimation, {
-      toValue: range.start,
+      toValue: 0,
       duration: 600,
       useNativeDriver: false,
     }).start();
-  }, [colorAnimation, range.start]);
+  }, [colorAnimation]);
 
-  const end = useCallback(() => {}, []);
+  const end = useCallback(() => {
+    Animated.timing(colorAnimation, {
+      toValue: toValue,
+      duration: 600,
+      useNativeDriver: false,
+    }).start();
+  }, [colorAnimation, toValue]);
 
   useEffect(() => {
-    const closeAnim = () => {
-      Animated.timing(colorAnimation, {
-        toValue: range.start,
-        duration: 600,
-        useNativeDriver: false,
-      }).start();
-    };
-
-    const openAnim = () => {
-      Animated.timing(colorAnimation, {
-        toValue: range.end,
-        duration: 600,
-        useNativeDriver: false,
-      }).start();
-    };
-    // if (toggle) {
-    //   return openAnim();
-    // }
-    return closeAnim();
-  }, [toggle, colorAnimation, range.start, range.end]);
+    if (toggle) {
+      return initial();
+    }
+    return end();
+  }, [toggle, end, initial]);
 
   const animatedBg = {
     view: {
       backgroundColor: colorAnimation.interpolate({
-        inputRange: [range.start, range.end],
+        inputRange: [0, toValue],
         outputRange: [colors.start, colors.end],
         extrapolate: 'clamp',
       }),
