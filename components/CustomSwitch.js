@@ -23,7 +23,7 @@ const CustomSwitch = () => {
 
   useEffect(() => {
     if (active) {
-      return (translateX.value = withTiming(40, {duration: 300}));
+      return (translateX.value = withTiming(45, {duration: 300}));
     }
     return (translateX.value = withTiming(0, {duration: 300}));
   }, [active, translateX]);
@@ -49,7 +49,7 @@ const CustomSwitch = () => {
       overflow: 'hidden',
     },
     switch: {
-      width: 25,
+      width: 20,
       height: 20,
       borderRadius: 25 / 2,
       backgroundColor: '#FFF',
