@@ -1,12 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import {
-  Container,
-  Text,
-  CustomSwitch,
-  NativeSwitch,
-  CustomTest,
-} from '../../components';
+import {Container, Text, CustomSwitch, NativeSwitch} from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
   const {currentTheme} = useTheme();
