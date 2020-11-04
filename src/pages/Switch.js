@@ -46,10 +46,7 @@ const Switch = () => {
           <NativeSwitch />
         </View>
       </View>
-      <View style={s.interpolation}>
-        <ColorInterpolation />
-      </View>
-      <CustomTest />
+      {/* <CustomTest /> */}
     </Container>
   );
 };
