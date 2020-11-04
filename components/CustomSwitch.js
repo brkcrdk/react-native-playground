@@ -8,9 +8,11 @@ import Animated, {
 } from 'react-native-reanimated';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
 
+import ColorInterpolation from './ColorInterpolation';
+
 const CustomSwitch = () => {
   const {currentTheme} = useTheme();
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(true);
   const toggleSwitch = (e) => {
     if (State.END === e.nativeEvent.state) {
       setActive(!active);
@@ -44,6 +46,7 @@ const CustomSwitch = () => {
       borderRadius: 25,
       justifyContent: 'center',
       paddingHorizontal: 5,
+      overflow: 'hidden',
     },
     switch: {
       width: 25,
@@ -56,6 +59,7 @@ const CustomSwitch = () => {
   return (
     <TapGestureHandler onHandlerStateChange={toggleSwitch}>
       <Animated.View style={[s.container]}>
+        <ColorInterpolation toggle={active} />
         <Animated.View style={[s.switch, animatedTranslate]} />
       </Animated.View>
     </TapGestureHandler>
