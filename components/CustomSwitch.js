@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '../hooks';
 import Animated, {
   useAnimatedStyle,
@@ -48,11 +48,26 @@ const CustomSwitch = () => {
       paddingHorizontal: 5,
       overflow: 'hidden',
     },
+    switchContainer: {
+      flexDirection: 'row',
+    },
     switch: {
       width: 20,
       height: 20,
       borderRadius: 25 / 2,
       backgroundColor: '#FFF',
+    },
+    text: {
+      marginHorizontal: 10,
+      position: 'absolute',
+      color: '#fff',
+      fontWeight: '900',
+    },
+    on: {
+      left: -40,
+    },
+    off: {
+      right: 0,
     },
   });
 
@@ -68,7 +83,11 @@ const CustomSwitch = () => {
             outputRange: [currentTheme.switchBackground, currentTheme.primary],
           }}
         />
-        <Animated.View style={[s.switch, animatedTranslate]} />
+        <Animated.View style={[s.switchContainer, animatedTranslate]}>
+          <Text style={[s.text, s.on]}>On</Text>
+          <View style={s.switch} />
+          <Text style={[s.text, s.off]}>Off</Text>
+        </Animated.View>
       </Animated.View>
     </TapGestureHandler>
   );
