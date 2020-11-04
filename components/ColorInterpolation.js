@@ -42,9 +42,6 @@ const ColorInterpolation = ({
 
   const s = StyleSheet.create({
     colorContainer: {
-      width: 100,
-      height: 40,
-      margin: 20,
       zIndex: -1,
       ...StyleSheet.absoluteFillObject,
     },
