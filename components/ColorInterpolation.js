@@ -1,70 +1,56 @@
-import React, {useState, useEffect, useRef} from 'react';
-import {View, StyleSheet, Animated} from 'react-native';
+import React, {useEffect, useRef} from 'react';
+import {StyleSheet, Animated} from 'react-native';
 
-import Text from './Text';
-import CustomRipple from './CustomRipple';
-
-const ColorInterpolation = () => {
-  const [active, setActive] = useState(false);
-
+const ColorInterpolation = ({
+  range = {start: 0, end: 1},
+  colors = {start: 'red', end: 'blue'},
+  toggle = true,
+}) => {
   const colorAnimation = useRef(new Animated.Value(0)).current;
 
-  const handleToggle = () => {
-    if (active) {
-      setActive(false);
-      closeAnim();
-    } else {
-      setActive(true);
-      openAnim();
+  useEffect(() => {
+    const closeAnim = () => {
+      Animated.timing(colorAnimation, {
+        toValue: range.start,
+        duration: 600,
+        useNativeDriver: false,
+      }).start();
+    };
+
+    const openAnim = () => {
+      Animated.timing(colorAnimation, {
+        toValue: range.end,
+        duration: 600,
+        useNativeDriver: false,
+      }).start();
+    };
+    if (toggle) {
+      return openAnim();
     }
-  };
-
-  const closeAnim = () => {
-    Animated.timing(colorAnimation, {
-      toValue: 0,
-      duration: 600,
-      useNativeDriver: false,
-    }).start();
-  };
-
-  const openAnim = () => {
-    Animated.timing(colorAnimation, {
-      toValue: 40,
-      duration: 600,
-      useNativeDriver: false,
-    }).start();
-  };
+    return closeAnim();
+  }, [toggle, colorAnimation, range.start, range.end]);
 
   const animatedBg = {
     view: {
       backgroundColor: colorAnimation.interpolate({
-        inputRange: [0, 40],
-        outputRange: ['red', 'yellow'],
+        inputRange: [range.start, range.end],
+        outputRange: [colors.start, colors.end],
         extrapolate: 'clamp',
       }),
     },
   };
 
   const s = StyleSheet.create({
-    container: {
-      alignItems: 'center',
-    },
     colorContainer: {
       width: 100,
       height: 40,
       margin: 20,
+      zIndex: -1,
+      ...StyleSheet.absoluteFillObject,
     },
   });
 
-  return (
-    <View style={s.container}>
-      <Text margin={20}>ColorInterpolation is here</Text>
-      <CustomRipple onPress={handleToggle}>
-        <Text color="#fff">Interpolate Colors</Text>
-      </CustomRipple>
-      <Animated.View style={[s.colorContainer, animatedBg.view]} />
-    </View>
-  );
+  return <Animated.View style={[s.colorContainer, animatedBg.view]} />;
 };
 
 export default ColorInterpolation;
