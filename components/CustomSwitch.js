@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
 
-import ColorInterpolation from './ColorInterpolation';
+import Background from './Background';
 
 const CustomSwitch = () => {
   const {currentTheme} = useTheme();
@@ -59,7 +59,7 @@ const CustomSwitch = () => {
   return (
     <TapGestureHandler onHandlerStateChange={toggleSwitch}>
       <Animated.View style={[s.container]}>
-        <ColorInterpolation toggle={active} range={{start: 0, end: 40}} />
+        <Background toggle={active} range={{start: 0, end: 40}} />
         <Animated.View style={[s.switch, animatedTranslate]} />
       </Animated.View>
     </TapGestureHandler>
