@@ -5,7 +5,6 @@ import {
   Text,
   CustomSwitch,
   NativeSwitch,
-  ColorInterpolation,
   CustomTest,
 } from '../../components';
 import {useTheme} from '../../hooks';
