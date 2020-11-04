@@ -1,4 +1,4 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useCallback, useRef} from 'react';
 import {StyleSheet, Animated} from 'react-native';
 
 const Background = ({
@@ -7,6 +7,16 @@ const Background = ({
   toggle = true,
 }) => {
   const colorAnimation = useRef(new Animated.Value(0)).current;
+
+  const initial = useCallback(() => {
+    Animated.timing(colorAnimation, {
+      toValue: range.start,
+      duration: 600,
+      useNativeDriver: false,
+    }).start();
+  }, [colorAnimation, range.start]);
+
+  const end = useCallback(() => {}, []);
 
   useEffect(() => {
     const closeAnim = () => {
@@ -24,9 +34,9 @@ const Background = ({
         useNativeDriver: false,
       }).start();
     };
-    if (toggle) {
-      return openAnim();
-    }
+    // if (toggle) {
+    //   return openAnim();
+    // }
     return closeAnim();
   }, [toggle, colorAnimation, range.start, range.end]);
 
