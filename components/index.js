@@ -7,7 +7,6 @@ import CustomDrawer from './CustomDrawer';
 import Accordion from './Accordion';
 import CustomRipple from './CustomRipple';
 import CustomSwitch from './CustomSwitch';
-import NativeSwitch from './NativeSwitch';
 import Background from './Background';
 
 export {
@@ -20,6 +19,5 @@ export {
   Accordion,
   CustomRipple,
   CustomSwitch,
-  NativeSwitch,
   Background,
 };
