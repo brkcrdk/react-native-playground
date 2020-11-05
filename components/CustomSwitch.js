@@ -16,6 +16,8 @@ const CustomSwitch = ({
   on = <Text>On</Text>,
   off = <Text>Off</Text>,
   disabled = false,
+  activeColor,
+  inactiveColor,
 }) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(true);
@@ -84,11 +86,14 @@ const CustomSwitch = ({
       <Animated.View style={[s.container]}>
         <Background
           toggle={active}
-          toValue={40}
+          toValue={1}
           duration={300}
           ranges={{
-            inputRange: [0, 40],
-            outputRange: [currentTheme.switchBackground, currentTheme.primary],
+            inputRange: [0, 1],
+            outputRange: [
+              inactiveColor || currentTheme.switchBackground,
+              activeColor || currentTheme.primary,
+            ],
           }}
         />
         <Animated.View style={[s.switchContainer, animatedTranslate]}>

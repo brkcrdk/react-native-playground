@@ -30,8 +30,10 @@ const Switch = () => {
             setPreview(!preview);
           }}
           renderLabel
-          on={<Icon name="emoji-happy" size={17} color="#fff" />}
-          off={<Icon name="emoji-sad" size={17} color="#000" />}
+          on={<Icon name="emoji-happy" size={19} color="#fff" />}
+          off={<Icon name="emoji-sad" size={19} color="#000" />}
+          activeColor="green"
+          inactiveColor="red"
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event
