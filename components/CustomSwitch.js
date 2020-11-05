@@ -92,7 +92,9 @@ const CustomSwitch = ({
             inputRange: [0, 1],
             outputRange: [
               inactiveColor || currentTheme.switchBackground,
-              activeColor || currentTheme.primary,
+              disabled
+                ? currentTheme.switchBackground
+                : activeColor || currentTheme.primary,
             ],
           }}
         />
