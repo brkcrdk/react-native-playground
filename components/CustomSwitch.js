@@ -22,6 +22,7 @@ const CustomSwitch = ({
 }) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(checked);
+  const translateX = useSharedValue(active ? 45 : 0);
 
   const toggleSwitch = (e) => {
     if (State.END === e.nativeEvent.state && !disabled) {
@@ -29,8 +30,6 @@ const CustomSwitch = ({
       onChange();
     }
   };
-
-  const translateX = useSharedValue(active ? 45 : 0);
 
   useEffect(() => {
     if (active) {
@@ -82,6 +81,14 @@ const CustomSwitch = ({
     },
   });
 
+  const output0 = disabled
+    ? currentTheme.switchBackground
+    : inactiveColor || currentTheme.primary;
+
+  const output1 = disabled
+    ? currentTheme.switchBackground
+    : activeColor || currentTheme.primary;
+
   return (
     <TapGestureHandler onHandlerStateChange={toggleSwitch} enabled={!disabled}>
       <Animated.View style={[s.container]}>
@@ -91,14 +98,7 @@ const CustomSwitch = ({
           duration={300}
           ranges={{
             inputRange: [0, 1],
-            outputRange: [
-              disabled
-                ? currentTheme.switchBackground
-                : inactiveColor || currentTheme.primary,
-              disabled
-                ? currentTheme.switchBackground
-                : activeColor || currentTheme.primary,
-            ],
+            outputRange: [output0, output1],
           }}
         />
         <Animated.View style={[s.switchContainer, animatedTranslate]}>
