@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Switch as NativeSwitch} from 'react-native';
 import {Container, Text, CustomSwitch} from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
@@ -28,6 +28,7 @@ const Switch = () => {
           onChange={() => {
             setPreview(!preview);
           }}
+          disabled
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event

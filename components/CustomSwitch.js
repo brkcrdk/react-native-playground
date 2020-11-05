@@ -10,12 +10,15 @@ import {TapGestureHandler, State} from 'react-native-gesture-handler';
 
 import Background from './Background';
 
-const CustomSwitch = ({onChange = () => {}}) => {
+// TODO: Add disable
+// TODO: Should able to change on/off content
+
+const CustomSwitch = ({onChange = () => {}, disabled = false}) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(true);
 
   const toggleSwitch = (e) => {
-    if (State.END === e.nativeEvent.state) {
+    if (State.END === e.nativeEvent.state && !disabled) {
       setActive(!active);
       onChange();
     }
@@ -74,7 +77,7 @@ const CustomSwitch = ({onChange = () => {}}) => {
   });
 
   return (
-    <TapGestureHandler onHandlerStateChange={toggleSwitch}>
+    <TapGestureHandler onHandlerStateChange={toggleSwitch} enabled={!disabled}>
       <Animated.View style={[s.container]}>
         <Background
           toggle={active}
