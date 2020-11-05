@@ -19,6 +19,7 @@ const CustomSwitch = ({
   activeColor,
   inactiveColor,
   checked = false,
+  duration = 300,
 }) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(checked);
@@ -33,10 +34,10 @@ const CustomSwitch = ({
 
   useEffect(() => {
     if (active) {
-      return (translateX.value = withTiming(45, {duration: 300}));
+      return (translateX.value = withTiming(45, {duration}));
     }
-    return (translateX.value = withTiming(0, {duration: 300}));
-  }, [active, translateX]);
+    return (translateX.value = withTiming(0, {duration}));
+  }, [active, translateX, duration]);
 
   const animatedTranslate = useAnimatedStyle(() => {
     return {
@@ -95,7 +96,7 @@ const CustomSwitch = ({
         <Background
           toggle={active}
           toValue={1}
-          duration={300}
+          duration={duration}
           ranges={{
             inputRange: [0, 1],
             outputRange: [output0, output1],
