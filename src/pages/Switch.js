@@ -34,7 +34,9 @@ const Switch = () => {
               setPreview(!preview);
             }}
           />
-          <Text color={preview ? 'red' : 'black'}>On change event</Text>
+          <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
+            On change event
+          </Text>
         </View>
         <View style={s.switch}>
           <Text color={currentTheme.text} fontSize={15} marginBottom={20}>
