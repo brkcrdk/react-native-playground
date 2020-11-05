@@ -9,13 +9,9 @@ const Switch = () => {
 
   const s = StyleSheet.create({
     exampleContainer: {
-      flexDirection: 'row',
       justifyContent: 'space-around',
       alignItems: 'center',
       width: '100%',
-    },
-    switch: {
-      alignItems: 'center',
     },
   });
 
@@ -25,25 +21,17 @@ const Switch = () => {
         Switch Components Example
       </Text>
       <View style={s.exampleContainer}>
-        <View style={s.switch}>
-          <Text color={currentTheme.text} fontSize={15} marginBottom={20}>
-            Custom
-          </Text>
-          <CustomSwitch
-            onChange={() => {
-              setPreview(!preview);
-            }}
-          />
-          <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
-            On change event
-          </Text>
-        </View>
-        <View style={s.switch}>
-          <Text color={currentTheme.text} fontSize={15} marginBottom={20}>
-            Native
-          </Text>
-          <NativeSwitch />
-        </View>
+        <Text color={currentTheme.text} fontSize={15} marginBottom={20}>
+          Custom
+        </Text>
+        <CustomSwitch
+          onChange={() => {
+            setPreview(!preview);
+          }}
+        />
+        <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
+          On change event
+        </Text>
       </View>
     </Container>
   );
