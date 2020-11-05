@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Switch as NativeSwitch} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import {Container, Text, CustomSwitch} from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
