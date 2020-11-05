@@ -18,9 +18,10 @@ const CustomSwitch = ({
   disabled = false,
   activeColor,
   inactiveColor,
+  checked = false,
 }) => {
   const {currentTheme} = useTheme();
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(checked);
 
   const toggleSwitch = (e) => {
     if (State.END === e.nativeEvent.state && !disabled) {
@@ -91,7 +92,9 @@ const CustomSwitch = ({
           ranges={{
             inputRange: [0, 1],
             outputRange: [
-              inactiveColor || currentTheme.switchBackground,
+              disabled
+                ? currentTheme.switchBackground
+                : inactiveColor || currentTheme.primary,
               disabled
                 ? currentTheme.switchBackground
                 : activeColor || currentTheme.primary,
