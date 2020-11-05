@@ -12,6 +12,7 @@ import Background from './Background';
 
 const CustomSwitch = ({
   onChange = () => {},
+  renderLabel = false,
   on = <Text>On</Text>,
   off = <Text>Off</Text>,
   disabled = false,
@@ -91,9 +92,9 @@ const CustomSwitch = ({
           }}
         />
         <Animated.View style={[s.switchContainer, animatedTranslate]}>
-          <View style={[s.text, s.on]}>{on}</View>
+          {renderLabel && <View style={[s.text, s.on]}>{on}</View>}
           <View style={s.switch} />
-          <View style={[s.text, s.off]}>{off}</View>
+          {renderLabel && <View style={[s.text, s.off]}>{off}</View>}
         </Animated.View>
       </Animated.View>
     </TapGestureHandler>

@@ -28,6 +28,7 @@ const Switch = () => {
           onChange={() => {
             setPreview(!preview);
           }}
+          renderLabel
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event
