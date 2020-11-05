@@ -10,12 +10,14 @@ import {TapGestureHandler, State} from 'react-native-gesture-handler';
 
 import Background from './Background';
 
-const CustomSwitch = () => {
+const CustomSwitch = ({onChange = () => {}}) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(true);
+
   const toggleSwitch = (e) => {
     if (State.END === e.nativeEvent.state) {
       setActive(!active);
+      onChange();
     }
   };
 
