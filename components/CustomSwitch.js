@@ -30,7 +30,7 @@ const CustomSwitch = ({
     }
   };
 
-  const translateX = useSharedValue(0);
+  const translateX = useSharedValue(active ? 45 : 0);
 
   useEffect(() => {
     if (active) {

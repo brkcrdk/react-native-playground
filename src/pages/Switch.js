@@ -35,7 +35,6 @@ const Switch = () => {
           activeColor="green"
           inactiveColor="red"
           disabled
-          checked
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event
