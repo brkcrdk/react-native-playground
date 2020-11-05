@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Container, Text, CustomSwitch, NativeSwitch} from '../../components';
 import {useTheme} from '../../hooks';
 const Switch = () => {
   const {currentTheme} = useTheme();
+
+  const [preview, setPreview] = useState(true);
 
   const s = StyleSheet.create({
     exampleContainer: {
@@ -14,9 +16,6 @@ const Switch = () => {
     },
     switch: {
       alignItems: 'center',
-    },
-    interpolation: {
-      marginTop: 20,
     },
   });
 
@@ -30,7 +29,12 @@ const Switch = () => {
           <Text color={currentTheme.text} fontSize={15} marginBottom={20}>
             Custom
           </Text>
-          <CustomSwitch />
+          <CustomSwitch
+            onChange={() => {
+              setPreview(!preview);
+            }}
+          />
+          <Text color={preview ? 'red' : 'black'}>On change event</Text>
         </View>
         <View style={s.switch}>
           <Text color={currentTheme.text} fontSize={15} marginBottom={20}>
@@ -39,7 +43,6 @@ const Switch = () => {
           <NativeSwitch />
         </View>
       </View>
-      {/* <CustomTest /> */}
     </Container>
   );
 };
