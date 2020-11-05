@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {useTheme} from '../hooks';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -8,6 +7,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {TapGestureHandler, State} from 'react-native-gesture-handler';
 
+import {useTheme} from '../hooks';
 import Background from './Background';
 
 const CustomSwitch = ({

@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Container, Text, CustomSwitch} from '../../components';
+import Icon from 'react-native-vector-icons/Entypo';
 import {useTheme} from '../../hooks';
 const Switch = () => {
   const {currentTheme} = useTheme();
@@ -29,6 +30,8 @@ const Switch = () => {
             setPreview(!preview);
           }}
           renderLabel
+          on={<Icon name="emoji-happy" size={17} color="#fff" />}
+          off={<Icon name="emoji-sad" size={17} color="#000" />}
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event
