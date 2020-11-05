@@ -34,6 +34,7 @@ const Switch = () => {
           off={<Icon name="emoji-sad" size={19} color="#000" />}
           activeColor="green"
           inactiveColor="red"
+          duration={1000}
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event
