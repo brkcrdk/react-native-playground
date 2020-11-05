@@ -28,7 +28,6 @@ const Switch = () => {
           onChange={() => {
             setPreview(!preview);
           }}
-          disabled
         />
         <Text color={preview ? 'red' : 'black'} paddingTop={20} fontSize={15}>
           On change event
