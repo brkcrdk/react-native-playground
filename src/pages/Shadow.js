@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {Container, CustomSlider} from '../../components';
+import {Container, CustomSlider, Text} from '../../components';
 
 const Shadow = () => {
   return (
     <Container>
-      <Text>Shadow is here</Text>
+      <Text marginBottom={50} fontSize={25}>
+        Shadow is here
+      </Text>
       <CustomSlider />
     </Container>
   );
