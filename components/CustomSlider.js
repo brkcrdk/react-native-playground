@@ -1,13 +1,14 @@
 import React from 'react';
 import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import {useSharedValue} from 'react-native-reanimated';
+
 const {width} = Dimensions.get('window');
+const SLIDER_HEIGHT = 5;
+const SLIDER_WIDTH = width - 20;
+const THUMB_HEIGHT = 20;
+const THUMB_WIDTH = 20;
 
 const CustomSlider = () => {
-  const SLIDER_HEIGHT = 5;
-  const SLIDER_WIDTH = width - 20;
-  const THUMB_HEIGHT = 20;
-  const THUMB_WIDTH = 20;
   const s = StyleSheet.create({
     container: {},
     slider: {
