@@ -7,7 +7,6 @@ import {useTheme} from '../hooks';
 
 const CustomDrawer = ({state, navigation, props}) => {
   const {currentTheme} = useTheme();
-
   const s = StyleSheet.create({
     view: {
       backgroundColor: currentTheme.background,
