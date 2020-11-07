@@ -1,6 +1,10 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, Pressable, Dimensions} from 'react-native';
-import {useSharedValue} from 'react-native-reanimated';
+import Animated, {
+  useSharedValue,
+  withTiming,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
 import {
   PanGestureHandler,
   TapGestureHandler,
@@ -26,7 +30,7 @@ const CustomSlider = () => {
       position: 'absolute',
       ...StyleSheet.absoluteFillObject,
       top: (SLIDER_HEIGHT - THUMB_HEIGHT) / 2,
-      left: posX - THUMB_WIDTH / 2,
+      // left: posX - THUMB_WIDTH / 2,
       // left: SLIDER_WIDTH - THUMB_WIDTH / 2,
       height: THUMB_HEIGHT,
       width: THUMB_WIDTH,
@@ -34,15 +38,23 @@ const CustomSlider = () => {
       backgroundColor: 'black',
     },
   });
+
+  const animatedThumb = useAnimatedStyle(() => {
+    return {
+      left: translateX.value,
+    };
+  });
+
   return (
     <TapGestureHandler
       onHandlerStateChange={({nativeEvent: {x}}) => {
-        setX(x);
+        const toValue = x - THUMB_WIDTH / 2;
+        return (translateX.value = withTiming(toValue, {duration: 1000}));
       }}>
       <View style={s.container}>
         <View style={s.slider} />
         <PanGestureHandler>
-          <View style={s.thumb} />
+          <Animated.View style={[s.thumb, animatedThumb]} />
         </PanGestureHandler>
       </View>
     </TapGestureHandler>
