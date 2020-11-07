@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, Dimensions} from 'react-native';
+import {View, StyleSheet, Pressable, Dimensions} from 'react-native';
 import {useSharedValue} from 'react-native-reanimated';
 import {
   PanGestureHandler,
@@ -36,8 +36,8 @@ const CustomSlider = () => {
   });
   return (
     <TapGestureHandler
-      onHandlerStateChange={(e) => {
-        console.log(e.nativeEvent.x);
+      onHandlerStateChange={({nativeEvent: {x}}) => {
+        setX(x);
       }}>
       <View style={s.container}>
         <View style={s.slider} />
