@@ -30,8 +30,6 @@ const CustomSlider = () => {
       position: 'absolute',
       ...StyleSheet.absoluteFillObject,
       top: (SLIDER_HEIGHT - THUMB_HEIGHT) / 2,
-      // left: posX - THUMB_WIDTH / 2,
-      // left: SLIDER_WIDTH - THUMB_WIDTH / 2,
       height: THUMB_HEIGHT,
       width: THUMB_WIDTH,
       borderRadius: THUMB_HEIGHT / 2,
