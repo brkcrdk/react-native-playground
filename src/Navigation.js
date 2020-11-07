@@ -8,12 +8,14 @@ import Ripple from './pages/Ripple';
 import AccordionTest from './pages/AccordionTest';
 import RipTest from './pages/RipTest';
 import Switch from './pages/Switch';
+import Shadow from './pages/Shadow';
+
 const Navigation = () => {
   const Drawer = createDrawerNavigator();
 
   return (
     <Drawer.Navigator
-      initialRouteName="Switch"
+      initialRouteName="Shadow"
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Button" component={Button} />
@@ -21,6 +23,7 @@ const Navigation = () => {
       <Drawer.Screen name="Custom Ripple" component={RipTest} />
       <Drawer.Screen name="Accordion" component={AccordionTest} />
       <Drawer.Screen name="Switch" component={Switch} />
+      <Drawer.Screen name="Shadow" component={Shadow} />
     </Drawer.Navigator>
   );
 };
