@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {View, StyleSheet, Pressable, Dimensions} from 'react-native';
+import React from 'react';
+import {View, StyleSheet, Dimensions} from 'react-native';
 import Animated, {
   useSharedValue,
   withTiming,
@@ -12,12 +12,11 @@ import {
 const {width} = Dimensions.get('window');
 const SLIDER_HEIGHT = 5;
 const SLIDER_WIDTH = width - 50;
-const THUMB_HEIGHT = 20;
-const THUMB_WIDTH = 20;
+const THUMB_HEIGHT = 15;
+const THUMB_WIDTH = 15;
 
 const CustomSlider = () => {
   const translateX = useSharedValue(0);
-  const [posX, setX] = useState(0);
   const s = StyleSheet.create({
     container: {},
     slider: {
