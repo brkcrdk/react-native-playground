@@ -46,7 +46,9 @@ const Container = ({children, ...props}) => {
     <View style={s.container}>
       <View style={s.header}>
         <DrawerIcon {...{navigation}} />
-        <Text>{route.name}</Text>
+        <Text fontSize={20} marginRight={5}>
+          {route.name}
+        </Text>
         <MaterialIcons
           color={currentTheme.primary}
           name="home"
