@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 import DrawerIcon from './DrawerIcon';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -9,7 +9,9 @@ import Text from './Text';
 
 const Container = ({children, ...props}) => {
   const navigation = useNavigation();
+  const route = useRoute();
   const {currentTheme} = useTheme();
+
   const s = StyleSheet.create({
     container: {
       backgroundColor: currentTheme.background,
@@ -32,11 +34,12 @@ const Container = ({children, ...props}) => {
       paddingVertical: 5,
     },
   });
+
   return (
     <View style={s.container}>
       <View style={s.header}>
         <DrawerIcon {...{navigation}} />
-        <Text>Header</Text>
+        <Text>{route.name}</Text>
         <MaterialIcons
           color={currentTheme.primary}
           name="home"
