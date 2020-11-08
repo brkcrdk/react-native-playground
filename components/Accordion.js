@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, FlatList} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import Text from './Text';
 import AccordionItem from './AccordionItem';
 import {useTheme} from '../hooks';
@@ -14,20 +14,15 @@ const Accordion = ({data}) => {
   });
 
   return (
-    <FlatList
-      style={s.container}
-      data={data}
-      renderItem={({item}) => {
-        return (
-          <AccordionItem title={item.title}>
-            <Text color={currentTheme.text} fontSize={13} fontWeight="100">
-              {item.content}
-            </Text>
-          </AccordionItem>
-        );
-      }}
-      keyExtractor={(item, index) => `${item.title}-${index}`}
-    />
+    <View style={{width: '100%'}}>
+      {data.map((item, index) => (
+        <AccordionItem title={item.title} key={`accordion-item-${index}`}>
+          <Text color={currentTheme.text} fontSize={13} fontWeight="100">
+            {item.content}
+          </Text>
+        </AccordionItem>
+      ))}
+    </View>
   );
 };
 

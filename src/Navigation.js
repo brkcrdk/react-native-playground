@@ -15,7 +15,7 @@ const Navigation = ({defaultPage}) => {
 
   return (
     <Drawer.Navigator
-      initialRouteName={defaultPage}
+      initialRouteName="Accordion"
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Button" component={Button} />
