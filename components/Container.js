@@ -15,10 +15,6 @@ const Container = ({children, ...props}) => {
       backgroundColor: currentTheme.background,
       flex: 1,
     },
-    icon: {
-      borderWidth: 1,
-      borderColor: 'red',
-    },
     content: {
       flex: 1,
       alignItems: 'center',
@@ -39,9 +35,19 @@ const Container = ({children, ...props}) => {
   return (
     <View style={s.container}>
       <View style={s.header}>
-        <DrawerIcon {...{navigation}} style={s.icon} />
-        <Text color={currentTheme.text}>Header</Text>
-        <View />
+        <DrawerIcon {...{navigation}} />
+        <Text>Header</Text>
+        <MaterialIcons
+          color={currentTheme.primary}
+          name="home"
+          size={30}
+          style={s.homeBtn}
+        />
+        {/* <MaterialIcons
+          color={currentTheme.primary}
+          name="home-edit-outline"
+          size={20}
+        /> */}
       </View>
       <View style={s.content}>{children}</View>
     </View>
