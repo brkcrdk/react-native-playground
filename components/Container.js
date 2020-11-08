@@ -1,8 +1,9 @@
 import React from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import DrawerIcon from './DrawerIcon';
 import {useTheme} from '../hooks';
+import Text from './Text';
 
 const Container = ({children, ...props}) => {
   const navigation = useNavigation();
@@ -13,8 +14,8 @@ const Container = ({children, ...props}) => {
       flex: 1,
     },
     icon: {
-      marginTop: 20,
-      marginLeft: 20,
+      borderWidth: 1,
+      borderColor: 'red',
     },
     content: {
       flex: 1,
@@ -29,14 +30,16 @@ const Container = ({children, ...props}) => {
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
-      backgroundColor: '#fff',
+      backgroundColor: currentTheme.background,
+      paddingVertical: 5,
     },
   });
   return (
     <View style={s.container}>
       <View style={s.header}>
         <DrawerIcon {...{navigation}} style={s.icon} />
-        <Text>Header</Text>
+        <Text color={currentTheme.text}>Header</Text>
+        <View />
       </View>
       <View style={s.content}>{children}</View>
     </View>
