@@ -12,6 +12,12 @@ const Container = ({children, ...props}) => {
   const {currentTheme} = useTheme();
   const {defaultPage, changeDefaultPage} = useDefaultPage();
 
+  const [name, setName] = useState();
+  useEffect(() => {
+    setName(defaultPage === route.name ? 'home' : 'home-edit');
+    console.log(defaultPage);
+  }, [defaultPage, route]);
+
   const s = StyleSheet.create({
     container: {
       backgroundColor: currentTheme.background,
@@ -47,14 +53,15 @@ const Container = ({children, ...props}) => {
       <View style={s.header}>
         <DrawerIcon {...{navigation}} />
         <Text fontSize={20} marginRight={5}>
-          {route.name}
+          {/* {route.name} */}
+          {defaultPage}
         </Text>
         <MaterialIcons
           onPress={() => {
             changeDefaultPage(route.name);
           }}
           color={currentTheme.primary}
-          name={defaultPage === route.name ? 'home' : 'home-edit'}
+          name={name}
           size={30}
           style={s.homeBtn}
         />
