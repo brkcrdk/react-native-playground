@@ -26,11 +26,11 @@ const Container = ({children, ...props}) => {
     header: {
       borderWidth: 1,
       borderColor: 'transparent',
-      // borderBottomColor: currentTheme.text,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: currentTheme.background,
+      paddingHorizontal: 10,
       paddingVertical: 5,
       shadowOffset: {
         width: 0,
