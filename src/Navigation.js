@@ -10,12 +10,12 @@ import RipTest from './pages/RipTest';
 import Switch from './pages/Switch';
 import Shadow from './pages/Shadow';
 
-const Navigation = () => {
+const Navigation = ({defaultPage}) => {
   const Drawer = createDrawerNavigator();
 
   return (
     <Drawer.Navigator
-      initialRouteName="Shadow"
+      initialRouteName={defaultPage}
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Button" component={Button} />
