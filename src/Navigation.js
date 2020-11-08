@@ -14,7 +14,6 @@ import Shadow from './pages/Shadow';
 const Navigation = () => {
   const Drawer = createDrawerNavigator();
   const {defaultPage} = useDefaultPage();
-  console.log(defaultPage);
   return (
     <Drawer.Navigator
       initialRouteName={defaultPage}
