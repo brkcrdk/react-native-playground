@@ -44,16 +44,28 @@ const CustomSwitch = ({
 
   useEffect(() => {
     if (active) {
-      return (animateOff.value = withTiming(-100, {duration}));
+      return (animateOff.value = withTiming(-50, {
+        duration: duration + 100,
+        delay: 1,
+      }));
     }
-    return (animateOff.value = withTiming(-40, {duration}));
+    return (animateOff.value = withTiming(5, {
+      duration: duration + 100,
+      delay: 1,
+    }));
   }, [active, animateOff, duration]);
 
   useEffect(() => {
     if (active) {
-      return (animateOn.value = withTiming(100, {duration}));
+      return (animateOn.value = withTiming(-40, {
+        duration: duration + 100,
+        delay: 1,
+      }));
     }
-    return (animateOn.value = withTiming(5, {duration}));
+    return (animateOn.value = withTiming(-100, {
+      duration: duration + 100,
+      delay: 1,
+    }));
   }, [active, animateOn, duration]);
 
   const animatedTranslate = useAnimatedStyle(() => {
@@ -131,9 +143,13 @@ const CustomSwitch = ({
           }}
         />
         <Animated.View style={[s.switchContainer, animatedTranslate]}>
-          {renderLabel && <View style={[s.text, s.on]}>{on}</View>}
+          {renderLabel && (
+            <Animated.View style={[s.text, animatedOn]}>{on}</Animated.View>
+          )}
           <View style={s.switch} />
-          {renderLabel && <View style={[s.text, s.off]}>{off}</View>}
+          {renderLabel && (
+            <Animated.View style={[s.text, animatedOff]}>{off}</Animated.View>
+          )}
         </Animated.View>
       </Animated.View>
     </TapGestureHandler>
