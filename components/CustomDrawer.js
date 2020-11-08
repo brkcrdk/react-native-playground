@@ -3,11 +3,10 @@ import {StyleSheet} from 'react-native';
 import {DrawerContentScrollView} from '@react-navigation/drawer';
 import RippleButton from './RippleButton';
 import Text from './Text';
-import {useTheme, useDefaultPage} from '../hooks';
+import {useTheme} from '../hooks';
 
 const CustomDrawer = ({state, navigation, props}) => {
   const {currentTheme} = useTheme();
-  const {changeDefaultPage} = useDefaultPage();
   const s = StyleSheet.create({
     view: {
       backgroundColor: currentTheme.background,
@@ -25,7 +24,6 @@ const CustomDrawer = ({state, navigation, props}) => {
             marginRight={20}
             onPress={() => {
               navigation.navigate(route.name);
-              changeDefaultPage(route.name);
             }}>
             <Text color="#fff">{route.name}</Text>
           </RippleButton>
