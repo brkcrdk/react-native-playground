@@ -26,12 +26,19 @@ const Container = ({children, ...props}) => {
     header: {
       borderWidth: 1,
       borderColor: 'transparent',
-      borderBottomColor: 'red',
+      // borderBottomColor: currentTheme.text,
       flexDirection: 'row',
       justifyContent: 'space-between',
       alignItems: 'center',
       backgroundColor: currentTheme.background,
       paddingVertical: 5,
+      shadowOffset: {
+        width: 0,
+        height: 15,
+      },
+      shadowRadius: 10,
+      shadowOpacity: 1,
+      elevation: 10,
     },
   });
 
