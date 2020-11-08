@@ -1,7 +1,6 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
-import {useDefaultPage} from '../hooks';
 import {CustomDrawer} from '../components';
 import Home from './pages/Home';
 import Button from './pages/Button';
@@ -12,12 +11,11 @@ import Switch from './pages/Switch';
 import Shadow from './pages/Shadow';
 
 const Navigation = () => {
-  const {defaultPage} = useDefaultPage();
   const Drawer = createDrawerNavigator();
 
   return (
     <Drawer.Navigator
-      initialRouteName={defaultPage}
+      initialRouteName="Home"
       drawerContent={(props) => <CustomDrawer {...props} />}>
       <Drawer.Screen name="Home" component={Home} />
       <Drawer.Screen name="Button" component={Button} />

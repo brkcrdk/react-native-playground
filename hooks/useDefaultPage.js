@@ -1,11 +1,5 @@
-import {useState} from 'react';
+import {useContext} from 'react';
 
-const useDefaultPage = () => {
-  const [defaultPage, setDefaultPage] = useState('Home');
-
-  const changeDefaultPage = (pageName) => setDefaultPage(pageName);
-
-  return {defaultPage, changeDefaultPage};
-};
+const useDefaultPage = () => {};
 
 export default useDefaultPage;
