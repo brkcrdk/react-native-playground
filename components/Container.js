@@ -1,22 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import DrawerIcon from './DrawerIcon';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useTheme, useDefaultPage} from '../hooks';
+import {useTheme} from '../hooks';
 import Text from './Text';
 
 const Container = ({children, ...props}) => {
   const navigation = useNavigation();
   const route = useRoute();
   const {currentTheme} = useTheme();
-  const {defaultPage, changeDefaultPage} = useDefaultPage();
-
-  const [name, setName] = useState();
-  useEffect(() => {
-    setName(defaultPage === route.name ? 'home' : 'home-edit');
-    console.log(defaultPage);
-  }, [defaultPage, route]);
 
   const s = StyleSheet.create({
     container: {
@@ -53,15 +46,11 @@ const Container = ({children, ...props}) => {
       <View style={s.header}>
         <DrawerIcon {...{navigation}} />
         <Text fontSize={20} marginRight={5}>
-          {/* {route.name} */}
-          {defaultPage}
+          {route.name}
         </Text>
         <MaterialIcons
-          onPress={() => {
-            changeDefaultPage(route.name);
-          }}
           color={currentTheme.primary}
-          name={name}
+          name="home"
           size={30}
           style={s.homeBtn}
         />
