@@ -1,5 +1,8 @@
 import {useContext} from 'react';
-
-const useDefaultPage = () => {};
+import {DefaultPage} from '../context/defaultPage';
+const useDefaultPage = () => {
+  const [defaultPage, setDefaultPage] = useContext(DefaultPage);
+  return {defaultPage, setDefaultPage};
+};
 
 export default useDefaultPage;
