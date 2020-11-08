@@ -1,5 +1,4 @@
 import React from 'react';
-import {ScrollView} from 'react-native';
 import {Container, CustomSlider, Text} from '../../components';
 
 const Shadow = () => {
