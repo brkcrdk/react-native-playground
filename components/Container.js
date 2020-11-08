@@ -3,13 +3,14 @@ import {StyleSheet, View} from 'react-native';
 import {useNavigation, useRoute} from '@react-navigation/native';
 import DrawerIcon from './DrawerIcon';
 import MaterialIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {useTheme} from '../hooks';
+import {useTheme, useDefaultPage} from '../hooks';
 import Text from './Text';
 
 const Container = ({children, ...props}) => {
   const navigation = useNavigation();
   const route = useRoute();
   const {currentTheme} = useTheme();
+  const {defaultPage, setDefaultPage} = useDefaultPage();
 
   const s = StyleSheet.create({
     container: {
@@ -50,15 +51,13 @@ const Container = ({children, ...props}) => {
         </Text>
         <MaterialIcons
           color={currentTheme.primary}
-          name="home"
+          name={defaultPage === route.name ? 'home' : 'home-edit'}
           size={30}
           style={s.homeBtn}
+          onPress={() => {
+            setDefaultPage(route.name);
+          }}
         />
-        {/* <MaterialIcons
-          color={currentTheme.primary}
-          name="home-edit-outline"
-          size={20}
-        /> */}
       </View>
       <View style={s.content}>{children}</View>
     </View>

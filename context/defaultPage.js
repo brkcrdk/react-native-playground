@@ -1,9 +1,9 @@
 import React, {useState, createContext} from 'react';
 
-const DefaultPage = createContext();
+export const DefaultPage = createContext();
 
-const DefaultPageContext = ({children}) => {
-  const [defaultPage, setDefaultPage] = useState('');
+export const DefaultPageContext = ({children}) => {
+  const [defaultPage, setDefaultPage] = useState('Home');
 
   return (
     <DefaultPage.Provider value={[defaultPage, setDefaultPage]}>
@@ -11,5 +11,3 @@ const DefaultPageContext = ({children}) => {
     </DefaultPage.Provider>
   );
 };
-
-export {DefaultPage, DefaultPageContext};
