@@ -3,6 +3,7 @@ Custom React Native components
 
 ### Fikir Listesi
 
+#### 0-) !!!BU ÖNEMLİ!!! Reanimated versiyonu alpha 8e güncelle. !!!BU ÖNEMLİ!!!
 #### 1-) Text componentinin adını güncelle çünkü native text componenti ile karışıyor.
 #### 2-) Temaya göre yazı boyutu ve kalınlıklarını güncelleyerek bir typography oluşturabilirsin
 #### 3-) Webde kullandığın gibi bir typography klasörü iyi olur ve richtext gibi bir komponent olur mu test et
