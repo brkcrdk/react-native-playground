@@ -29,13 +29,22 @@ const AccordionTest = () => {
   ];
 
   return (
-    <Container>
+    <Container paddingBottom={20}>
       <ScrollView style={{width: '100%'}}>
-        <Text color={currentTheme.text} fontSize={20} marginBottom={20}>
+        <Text
+          color={currentTheme.text}
+          fontSize={20}
+          marginVertical={20}
+          paddingLeft={10}>
           Accordion component example
         </Text>
         <Accordion data={DATA} />
-        <Text color={currentTheme.text} fontSize={20} marginBottom={20}>
+        <Text
+          color={currentTheme.text}
+          fontSize={20}
+          marginTop={10}
+          marginBottom={20}
+          paddingLeft={10}>
           Accordion component example
         </Text>
         <Accordion data={DATA} />

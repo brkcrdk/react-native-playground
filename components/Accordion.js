@@ -14,7 +14,7 @@ const Accordion = ({data}) => {
   });
 
   return (
-    <View style={{width: '100%'}}>
+    <View style={s.container}>
       {data.map((item, index) => (
         <AccordionItem title={item.title} key={`accordion-item-${index}`}>
           <Text color={currentTheme.text} fontSize={13} fontWeight="100">
