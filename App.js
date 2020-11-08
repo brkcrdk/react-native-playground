@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -7,7 +7,6 @@ import {useTheme} from './hooks';
 
 const App = () => {
   const {currentTheme, appearance} = useTheme();
-  const [defaultPage, setDefaultPage] = useState('Home');
 
   return (
     <NavigationContainer>
@@ -15,7 +14,7 @@ const App = () => {
         barStyle={`${appearance === 'dark' ? 'light' : 'dark'}-content`}
         backgroundColor={currentTheme.background}
       />
-      <Navigation defaultPage={defaultPage} />
+      <Navigation />
     </NavigationContainer>
   );
 };
