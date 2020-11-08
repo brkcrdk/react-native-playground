@@ -1,4 +1,5 @@
 import React from 'react';
+import {Text} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {useDefaultPage} from '../hooks';
@@ -14,6 +15,9 @@ import Shadow from './pages/Shadow';
 const Navigation = () => {
   const Drawer = createDrawerNavigator();
   const {defaultPage} = useDefaultPage();
+  if (!defaultPage) {
+    return <Text>Loading</Text>;
+  }
   return (
     <Drawer.Navigator
       initialRouteName={defaultPage}

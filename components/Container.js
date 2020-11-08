@@ -10,7 +10,7 @@ const Container = ({children, ...props}) => {
   const navigation = useNavigation();
   const route = useRoute();
   const {currentTheme} = useTheme();
-  const {defaultPage, setDefaultPage, updateDefaultPage} = useDefaultPage();
+  const {defaultPage, updateDefaultPage} = useDefaultPage();
 
   const s = StyleSheet.create({
     container: {
