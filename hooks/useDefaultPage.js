@@ -1,20 +1,22 @@
-import {useContext, useEffect} from 'react';
+import {useContext, useEffect, useCallback} from 'react';
 import {DefaultPage} from '../context/defaultPage';
 import AsnycStorage from '@react-native-async-storage/async-storage';
 
 const useDefaultPage = () => {
   const [defaultPage, setDefaultPage] = useContext(DefaultPage);
 
+  const getData = useCallback(async () => {
+    try {
+      const value = await AsnycStorage.getItem('defaultPage');
+      if (value) {
+        setDefaultPage(value);
+      }
+    } catch {}
+  }, [setDefaultPage]);
+
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const value = await AsnycStorage.getItem('defaultPage');
-        if (value) {
-          console.log(value);
-        }
-      } catch {}
-    };
-  }, []);
+    getData();
+  }, [getData, defaultPage]);
 
   const updateDefaultPage = async (pageName) => {
     try {

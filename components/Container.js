@@ -10,7 +10,7 @@ const Container = ({children, ...props}) => {
   const navigation = useNavigation();
   const route = useRoute();
   const {currentTheme} = useTheme();
-  const {defaultPage, setDefaultPage} = useDefaultPage();
+  const {defaultPage, setDefaultPage, updateDefaultPage} = useDefaultPage();
 
   const s = StyleSheet.create({
     container: {
@@ -55,7 +55,7 @@ const Container = ({children, ...props}) => {
           size={30}
           style={s.homeBtn}
           onPress={() => {
-            setDefaultPage(route.name);
+            updateDefaultPage(route.name);
           }}
         />
       </View>
