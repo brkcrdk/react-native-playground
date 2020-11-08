@@ -23,7 +23,10 @@ const CustomSwitch = ({
 }) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(checked);
+
   const translateX = useSharedValue(active ? 45 : 0);
+  const animateOn = useSharedValue(-40);
+  const animateOff = useSharedValue(5);
 
   const toggleSwitch = (e) => {
     if (State.END === e.nativeEvent.state && !disabled) {
@@ -39,6 +42,20 @@ const CustomSwitch = ({
     return (translateX.value = withTiming(0, {duration}));
   }, [active, translateX, duration]);
 
+  useEffect(() => {
+    if (active) {
+      return (animateOff.value = withTiming(-100, {duration}));
+    }
+    return (animateOff.value = withTiming(-40, {duration}));
+  }, [active, animateOff, duration]);
+
+  useEffect(() => {
+    if (active) {
+      return (animateOn.value = withTiming(100, {duration}));
+    }
+    return (animateOn.value = withTiming(5, {duration}));
+  }, [active, animateOn, duration]);
+
   const animatedTranslate = useAnimatedStyle(() => {
     return {
       transform: [
@@ -46,6 +63,17 @@ const CustomSwitch = ({
           translateX: translateX.value,
         },
       ],
+    };
+  });
+
+  const animatedOn = useAnimatedStyle(() => {
+    return {
+      left: animateOn.value,
+    };
+  });
+  const animatedOff = useAnimatedStyle(() => {
+    return {
+      right: animateOff.value,
     };
   });
 
