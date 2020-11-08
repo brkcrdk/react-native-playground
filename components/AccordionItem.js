@@ -72,11 +72,13 @@ const Accordion = ({children, title = 'Title'}) => {
             <Text color={currentTheme.text} fontWeight="700" fontSize={16}>
               {title}
             </Text>
-            <Icon
-              name={active ? 'up' : 'down'}
-              color={currentTheme.primary}
-              size={16}
-            />
+            <Animated.View>
+              <Icon
+                name={active ? 'up' : 'down'}
+                color={currentTheme.primary}
+                size={16}
+              />
+            </Animated.View>
           </View>
         </TouchableWithoutFeedback>
         <Animated.ScrollView
