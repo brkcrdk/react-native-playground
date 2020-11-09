@@ -5,7 +5,7 @@ Custom React Native components
 
 ###### 0-) !!!BU ÖNEMLİ!!! Reanimated versiyonu alpha 8e güncelle. !!!BU ÖNEMLİ!!!
 ###### NOTE: ERTELENDİ çünkü alpha8' de hata var. Kontrol etmeye devam et.
-###### 1-) Text componentinin adını güncelle çünkü native text componenti ile karışıyor. 
+###### 1-) Text componentinin adını güncelle çünkü native text componenti ile karışıyor. Folder yapısı önemli
 ###### 2-) Temaya göre yazı boyutu ve kalınlıklarını güncelleyerek bir typography oluşturabilirsin -> tailwindde ki boyutları uygulayabiliriz
 ###### 3-) Webde kullandığın gibi bir typography klasörü iyi olur ve richtext gibi bir komponent olur mu test et
 ###### 4-) Vue.js de olan component tarzı bir dinamik component yapılabilir mi dene
