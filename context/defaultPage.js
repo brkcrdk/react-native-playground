@@ -12,6 +12,7 @@ export const DefaultPageContext = ({children}) => {
       if (value) {
         setDefaultPage(value);
       }
+      setDefaultPage('Home');
     } catch {}
   }, [setDefaultPage]);
 
