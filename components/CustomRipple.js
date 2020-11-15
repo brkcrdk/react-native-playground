@@ -42,6 +42,8 @@ const CustomRipple = ({children, onPress = () => {}, ...props}) => {
   };
   const gestureHandler = useAnimatedGestureHandler({
     // TODO: Update this section it causes error after reanimated v2 alpha8
+    // TODO: Moving this method in to onHandlerStateChange might help
+    // TODO: look at this https://docs.swmansion.com/react-native-gesture-handler/docs/handler-longpress
     // onStart: (event, ctx) => {
     //   const {x, y} = event;
     //   setPressPosition({x, y});
@@ -95,7 +97,9 @@ const CustomRipple = ({children, onPress = () => {}, ...props}) => {
 
   return (
     <LongPressGestureHandler
-      onGestureEvent={gestureHandler}
+      onGestureEvent={({nativeEvent}) => {
+        console.log(nativeEvent);
+      }}
       minDurationMs={1}
       onHandlerStateChange={handlePress}>
       <Animated.View style={s.container} onLayout={handleLayout}>
