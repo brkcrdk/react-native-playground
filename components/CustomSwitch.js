@@ -23,8 +23,8 @@ const CustomSwitch = ({
 }) => {
   const {currentTheme} = useTheme();
   const [active, setActive] = useState(checked);
-
-  const translateX = useSharedValue(active ? 45 : 0);
+  const [initialX, setInitialX] = useState(active ? 45 : 0);
+  const translateX = useSharedValue(initialX);
   const animateOn = useSharedValue(-40);
   const animateOff = useSharedValue(5);
 
