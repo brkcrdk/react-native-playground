@@ -41,23 +41,24 @@ const CustomRipple = ({children, onPress = () => {}, ...props}) => {
     }
   };
   const gestureHandler = useAnimatedGestureHandler({
-    onStart: (event, ctx) => {
-      const {x, y} = event;
-      setPressPosition({x, y});
-      ctx.maxScale = maxScale.value;
-      scale.value = 0;
-      opacity.value = 0;
-    },
-    onActive: (_, ctx) => {
-      scale.value = withTiming(ctx.maxScale, {duration: 350});
-      opacity.value = withTiming(0.3, {duration: 50});
-    },
-    onFinish: () => {
-      opacity.value = withTiming(0);
-      setTimeout(() => {
-        scale.value = 0;
-      }, 300);
-    },
+    // TODO: Update this section it causes error after reanimated v2 alpha8
+    // onStart: (event, ctx) => {
+    //   const {x, y} = event;
+    //   setPressPosition({x, y});
+    //   ctx.maxScale = maxScale.value;
+    //   scale.value = 0;
+    //   opacity.value = 0;
+    // },
+    // onActive: (_, ctx) => {
+    //   scale.value = withTiming(ctx.maxScale, {duration: 350});
+    //   opacity.value = withTiming(0.3, {duration: 50});
+    // },
+    // onFinish: () => {
+    //   opacity.value = withTiming(0);
+    //   setTimeout(() => {
+    //     scale.value = 0;
+    //   }, 300);
+    // },
   });
 
   const animatedStyle = useAnimatedStyle(() => {
